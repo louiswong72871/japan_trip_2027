@@ -1,10 +1,21 @@
-import {
-  useEffect,
-  useId,
-  useRef,
-  type ReactNode,
-} from "react";
+import { useEffect, useId, useRef, type ReactNode } from "react";
+import { gsap, motionDuration, prefersReducedMotion, useGSAP } from "../motion/gsap";
 import { Button } from "./Button";
+
+function setDialogFade(node: HTMLDialogElement, value: number) {
+  node.style.setProperty("--dialog-fade", String(value));
+}
+
+function readDialogFade(node: HTMLDialogElement): number {
+  const raw = node.style.getPropertyValue("--dialog-fade");
+  const value = Number(raw);
+  return raw !== "" && Number.isFinite(value) ? value : 1;
+}
+
+function clearDialogMotion(node: HTMLDialogElement) {
+  gsap.set(node, { clearProps: "opacity,transform" });
+  setDialogFade(node, 1);
+}
 
 export function ModalDialog({
   open,
@@ -20,34 +31,118 @@ export function ModalDialog({
   widthClass?: string;
 }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const titleId = useId();
   const lastFocus = useRef<HTMLElement | null>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const node = dialogRef.current;
     if (!node) {
       return;
     }
-    if (open && !node.open) {
-      lastFocus.current = document.activeElement as HTMLElement | null;
-      node.showModal();
+    timelineRef.current?.kill();
+    timelineRef.current = null;
+
+    if (open) {
+      if (!node.open) {
+        lastFocus.current = document.activeElement as HTMLElement | null;
+        node.showModal();
+      }
+      if (prefersReducedMotion()) {
+        clearDialogMotion(node);
+        return;
+      }
+      const fade = { value: 0 };
+      setDialogFade(node, 0);
+      const timeline = gsap.timeline();
+      timeline.fromTo(
+        node,
+        { opacity: 0, y: 8 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: motionDuration.modalIn,
+          ease: "power2.out",
+          clearProps: "opacity,transform",
+        },
+        0,
+      );
+      timeline.to(
+        fade,
+        {
+          value: 1,
+          duration: motionDuration.modalIn,
+          ease: "power2.out",
+          onUpdate: () => setDialogFade(node, fade.value),
+        },
+        0,
+      );
+      timelineRef.current = timeline;
+      return;
     }
-    if (!open && node.open) {
+
+    if (!node.open) {
+      clearDialogMotion(node);
+      return;
+    }
+
+    if (prefersReducedMotion()) {
+      clearDialogMotion(node);
       node.close();
+      return;
     }
-  }, [open]);
+
+    const fade = { value: readDialogFade(node) };
+    const timeline = gsap.timeline({
+      onComplete: () => {
+        if (node.open) {
+          node.close();
+        }
+        clearDialogMotion(node);
+      },
+    });
+    timeline.to(
+      node,
+      {
+        opacity: 0,
+        y: 6,
+        duration: motionDuration.modalOut,
+        ease: "power2.in",
+      },
+      0,
+    );
+    timeline.to(
+      fade,
+      {
+        value: 0,
+        duration: motionDuration.modalOut,
+        ease: "power2.in",
+        onUpdate: () => setDialogFade(node, fade.value),
+      },
+      0,
+    );
+    timelineRef.current = timeline;
+  }, { dependencies: [open], scope: dialogRef });
 
   useEffect(() => {
     const node = dialogRef.current;
     if (!node) {
       return;
     }
+    const onCancel = (event: Event) => {
+      event.preventDefault();
+      onClose();
+    };
     const onDialogClose = () => {
       onClose();
       lastFocus.current?.focus();
     };
+    node.addEventListener("cancel", onCancel);
     node.addEventListener("close", onDialogClose);
-    return () => node.removeEventListener("close", onDialogClose);
+    return () => {
+      node.removeEventListener("cancel", onCancel);
+      node.removeEventListener("close", onDialogClose);
+    };
   }, [onClose]);
 
   return (
