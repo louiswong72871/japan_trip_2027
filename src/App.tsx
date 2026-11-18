@@ -3,7 +3,7 @@ import { BackToTop } from "./components/BackToTop";
 import { Button } from "./components/Button";
 import { DayPager } from "./components/DayPager";
 import { DayTabs } from "./components/DayTabs";
-import { GearDialog } from "./components/GearDialog";
+import { PrepDialog } from "./components/PrepDialog";
 import { IntroWipe } from "./components/IntroWipe";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { DEFAULT_DAY, days, isDayId, type DayId } from "./data/pages";
@@ -33,7 +33,7 @@ function scrollDayLayoutToTop() {
 
 function AppShell() {
   const [page, setPage] = useState<DayId>(readHash);
-  const [gearOpen, setGearOpen] = useState(false);
+  const [prepOpen, setPrepOpen] = useState(false);
   const DayView = dayViews[page];
   const shouldScroll = useRef(false);
   const shellRef = useRef<HTMLDivElement>(null);
@@ -100,12 +100,12 @@ function AppShell() {
             <div className="flex flex-col items-stretch gap-2 border-t border-border p-2">
               <Button
                 variant="secondary"
-                aria-pressed={gearOpen}
-                onClick={() => setGearOpen(true)}
+                aria-pressed={prepOpen}
+                onClick={() => setPrepOpen(true)}
                 className="w-full px-2 md:px-4"
               >
-                <span className="md:hidden">衣著</span>
-                <span className="hidden md:inline">衣著與備案</span>
+                <span className="md:hidden">準備</span>
+                <span className="hidden md:inline">出發準備</span>
               </Button>
               <span className="flex justify-center md:justify-start">
                 <ThemeToggle />
@@ -125,7 +125,7 @@ function AppShell() {
             </main>
           </section>
         </div>
-        <GearDialog open={gearOpen} onClose={() => setGearOpen(false)} />
+        <PrepDialog open={prepOpen} onClose={() => setPrepOpen(false)} />
         <BackToTop />
       </div>
     </>

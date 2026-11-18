@@ -11,7 +11,7 @@ export type ConfirmationItem = {
   canvasNote?: string;
   appearsIn: DayId[];
   optional?: boolean;
-  /** Show in 衣著與備案 → 必要缺項 */
+  /** Used by GapStatusList if that list is rendered */
   inGaps?: boolean;
 };
 
