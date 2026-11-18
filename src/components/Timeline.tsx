@@ -10,7 +10,7 @@ export type TimelineEntry = {
 
 export function Timeline({ items }: { items: TimelineEntry[] }) {
   return (
-    <ol className="max-w-xl">
+    <ol>
       {items.map((item, index) => {
         const last = index === items.length - 1;
         const active = index === 0;
@@ -18,7 +18,7 @@ export function Timeline({ items }: { items: TimelineEntry[] }) {
           <li
             key={`${item.title}-${item.description}`}
             data-timeline-node
-            className="flex items-stretch gap-4"
+            className="flex items-stretch gap-5"
           >
             <div className="relative flex w-3 shrink-0 justify-center">
               {items.length > 1 ? (
@@ -36,11 +36,11 @@ export function Timeline({ items }: { items: TimelineEntry[] }) {
                 aria-hidden="true"
               />
             </div>
-            <div className={`min-w-0 ${last ? "pb-0" : "pb-6"}`}>
-              <h3 className="text-base font-medium text-fg">{item.title}</h3>
-              <p className="mt-0.5 text-sm text-muted-fg">{item.description}</p>
+            <div className={`min-w-0 ${last ? "pb-0" : "pb-5"}`}>
+              <h3 className="font-serif text-xl leading-tight font-semibold text-fg">{item.title}</h3>
+              <p className="mt-1 text-base text-muted-fg">{item.description}</p>
               {item.detail ? (
-                <div className="mt-2 text-sm text-pretty text-fg">{item.detail}</div>
+                <div className="mt-2 text-base text-pretty text-fg">{item.detail}</div>
               ) : null}
               {item.link ? (
                 <p className="mt-2">

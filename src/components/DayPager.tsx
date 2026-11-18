@@ -13,7 +13,7 @@ export function DayPager({
   const next = index >= 0 && index < days.length - 1 ? days[index + 1] : null;
 
   return (
-    <div className="mt-8 flex flex-wrap justify-between gap-2">
+    <div className="mt-6 flex flex-wrap justify-between gap-2">
       {prev ? (
         <Button variant="secondary" onClick={() => onChange(prev.id)}>
           上一頁　{prev.label}

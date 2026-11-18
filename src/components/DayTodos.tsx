@@ -23,13 +23,13 @@ export function DayTodos({ dayId }: { dayId: DayId }) {
 
   return (
     <section aria-labelledby={`todos-${dayId}`}>
-      <h3 id={`todos-${dayId}`} className="text-sm font-medium text-fg">
+      <h3 id={`todos-${dayId}`} className="text-base font-medium text-fg">
         待辦
       </h3>
       {items.length > 0 ? (
         <ul className="mt-2 divide-y divide-border border-y border-border">
           {items.map((item) => (
-            <li key={item.id} className="py-3">
+            <li key={item.id} className="py-2">
               <label className="flex cursor-pointer items-start gap-3">
                 <input
                   type="checkbox"
@@ -42,7 +42,7 @@ export function DayTodos({ dayId }: { dayId: DayId }) {
                     {item.done ? "已完成" : "待確認"}
                   </StatusBadge>
                   <span
-                    className={`mt-1 block text-sm ${
+                    className={`mt-1 block text-base ${
                       item.done ? "text-muted-fg line-through" : "text-fg"
                     }`}
                   >
@@ -54,7 +54,7 @@ export function DayTodos({ dayId }: { dayId: DayId }) {
           ))}
         </ul>
       ) : (
-        <p className="mt-2 text-sm text-muted-fg">這天還沒有待辦。</p>
+        <p className="mt-2 text-base text-muted-fg">這天還沒有待辦。</p>
       )}
       <div className="mt-3 flex gap-2">
         <input
@@ -64,7 +64,7 @@ export function DayTodos({ dayId }: { dayId: DayId }) {
           onKeyDown={onKeyDown}
           placeholder="新增這天的待辦"
           aria-label="新增這天的待辦"
-          className="min-h-11 min-w-0 flex-1 rounded-[var(--radius-sm)] border border-border bg-card px-3 text-sm text-fg"
+          className="min-h-11 min-w-0 flex-1 rounded-[var(--radius-sm)] border border-border bg-card px-3 text-base text-fg"
         />
         <Button variant="primary" onClick={submit}>
           新增

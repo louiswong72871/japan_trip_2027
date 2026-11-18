@@ -8,9 +8,9 @@ export function Callout({
   children: ReactNode;
 }) {
   return (
-    <aside className="callout px-4 py-4 text-sm" role="note">
+    <aside className="callout px-4 py-3 text-base" role="note">
       <p className="font-medium">{lead}</p>
-      <div className="mt-2 text-pretty">{children}</div>
+      <div className="mt-1.5 text-pretty">{children}</div>
     </aside>
   );
 }

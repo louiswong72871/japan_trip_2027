@@ -113,11 +113,11 @@ function AppShell() {
             </div>
           </aside>
           <section className="min-w-0 flex-1 bg-transparent">
-            <main className="mx-auto max-w-3xl px-5 py-8 sm:px-8 sm:py-12">
+            <main className="mx-auto max-w-5xl px-5 py-6 sm:px-8 sm:py-8">
               <p className="sr-only">{current.label}</p>
               <DayView />
               <DayPager page={page} onChange={openPage} />
-              <p className="mt-10 text-xs text-muted-fg">
+              <p className="mt-6 text-xs text-muted-fg">
                 此為行程計劃的視覺預覽，尚未公開部署。尚未下訂或待確認的項目會標示狀態，可在本機註記，不會代為購票或改訂。規劃原稿仍以畫布頁為準。
               </p>
             </main>

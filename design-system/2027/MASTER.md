@@ -51,8 +51,9 @@
 - **Heading Font:** Noto Serif TC（標題、日期大字、對話框標題）
 - **Body Font:** Noto Sans TC（正文、分頁、時間軸、膠囊標籤）
 - **不要**改用 Zen Kaku Gothic 或 Helvetica 做正文。
-- 章節標題：oversized Latin 日標（`DAY 01` + `1.10`），旁邊一個描邊膠囊放中文日名（hairline border、pill、較寬 tracking）。
-- Latin tracking 比海報式緊排稍鬆（約 `0.06em`–`0.2em`），長頁捲動時仍清楚。
+- 章節標題：Latin 日標（`DAY 01` + `1.10`，約 `text-5xl`／`sm:text-6xl`），旁邊一個描邊膠囊放中文日名。日期不要再大到壓過正文。
+- 正文 `1.125rem`、行高約 `1.55`；時間軸時刻用 serif `text-xl`，說明與細節用 `text-base`。層級要貼着行程內容，不要留大片空白。
+- Latin tracking 比海報式緊排稍鬆（約 `0.04em`–`0.18em`），長頁捲動時仍清楚。
 
 ### Radius
 
@@ -74,10 +75,10 @@
 
 ## Layout
 
-- 每日分頁在左側固定側欄（sticky DayTabs）。不要加 Lenis／smooth-scroll，以免打斷 sticky 與切日捲回。不要加頂部主視覺橫幅。
+- 每日分頁在左側固定側欄（sticky DayTabs）。主欄約 `max-w-5xl`，時間軸用滿欄寬。不要加 Lenis／smooth-scroll，以免打斷 sticky 與切日捲回。不要加頂部主視覺橫幅。
+- 各日標題右側放一張 3:2 小圖（不是橫幅），圖下註明 Wikimedia 作者與授權，連到原檔。1/16 只用豊島園駅，不用哈利波特官方或角色圖片。
 - 單日主體是垂直時間軸。不要加行銷描述或概述。警示、callout、必做事項必須保留。
-- 雙數日／單數日交替用白底與 `#F9F9F9`（深色則 `#0A0A0A`／`#141414`）作為章節底。DayPanel 不再套一層全日白底大卡。
-- 不要改行程事實、時刻，或 `src/data/*`（除必要 className）。不要寫門禁、信箱號碼或住宿完整街址。
+- 不要改行程事實或時刻。不要寫門禁、信箱號碼或住宿完整街址。
 
 ---
 

@@ -49,7 +49,7 @@ export function Alternatives({
   }, { dependencies: [open], scope: panelRef });
 
   return (
-    <div className="mt-6">
+    <div className="mt-5">
       <Button
         variant="secondary"
         aria-expanded={open}
@@ -66,7 +66,7 @@ export function Alternatives({
         aria-hidden={!open}
         className="h-0 overflow-hidden opacity-0"
       >
-        <div className="mt-4 rounded-[var(--radius)] border border-border bg-card p-4 sm:p-6">
+        <div className="mt-3 rounded-[var(--radius)] border border-border bg-card p-4">
           <div className="space-y-4">{children}</div>
         </div>
       </div>

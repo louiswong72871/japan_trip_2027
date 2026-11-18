@@ -17,22 +17,29 @@ export function DayTabs({
 }) {
   const listRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLSpanElement>(null);
+  const hoverArmedRef = useRef(true);
   const [hoverId, setHoverId] = useState<DayId | null>(null);
   const highlightId = hoverId ?? value;
 
   useLayoutEffect(() => {
     const list = listRef.current;
     const selected = list?.querySelector<HTMLElement>('[aria-selected="true"]');
-    if (!list || !selected) {
+    const scroller = list?.parentElement;
+    if (!list || !selected || !scroller) {
       return;
     }
-    const listRect = list.getBoundingClientRect();
+    const scrollerRect = scroller.getBoundingClientRect();
     const selectedRect = selected.getBoundingClientRect();
+    const fullyVisible =
+      selectedRect.top >= scrollerRect.top && selectedRect.bottom <= scrollerRect.bottom;
+    if (fullyVisible) {
+      return;
+    }
     const top =
-      list.scrollTop +
-      (selectedRect.top - listRect.top) -
-      (listRect.height - selectedRect.height) / 2;
-    list.scrollTo({
+      scroller.scrollTop +
+      (selectedRect.top - scrollerRect.top) -
+      (scrollerRect.height - selectedRect.height) / 2;
+    scroller.scrollTo({
       top: Math.max(0, top),
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
         ? "auto"
@@ -86,22 +93,43 @@ export function DayTabs({
       return;
     }
     event.preventDefault();
-    onChange(days[next].id);
+    selectDay(days[next].id);
     const buttons = listRef.current?.querySelectorAll<HTMLButtonElement>('[role="tab"]');
     buttons?.[next]?.focus();
   };
 
-  const onPointerEnterItem = (id: DayId) => (event: PointerEvent<HTMLButtonElement>) => {
+  const moveHighlightTo = (id: DayId, item: HTMLElement) => {
     setHoverId(id);
     const slider = sliderRef.current;
     if (slider) {
-      moveSliderTo(slider, event.currentTarget);
+      moveSliderTo(slider, item);
       slider.dataset.ready = "true";
     }
   };
 
+  const onPointerEnterItem = (id: DayId) => (event: PointerEvent<HTMLButtonElement>) => {
+    if (!hoverArmedRef.current) {
+      return;
+    }
+    moveHighlightTo(id, event.currentTarget);
+  };
+
+  const onPointerMoveItem = (id: DayId) => (event: PointerEvent<HTMLButtonElement>) => {
+    if (!hoverArmedRef.current) {
+      hoverArmedRef.current = true;
+    }
+    moveHighlightTo(id, event.currentTarget);
+  };
+
   const onPointerLeaveMenu = () => {
+    hoverArmedRef.current = true;
     setHoverId(null);
+  };
+
+  const selectDay = (id: DayId) => {
+    hoverArmedRef.current = false;
+    setHoverId(null);
+    onChange(id);
   };
 
   return (
@@ -131,8 +159,9 @@ export function DayTabs({
             aria-controls={`panel-${day.id}`}
             id={`tab-${day.id}`}
             tabIndex={selected ? 0 : -1}
-            onClick={() => onChange(day.id)}
+            onClick={() => selectDay(day.id)}
             onPointerEnter={onPointerEnterItem(day.id)}
+            onPointerMove={onPointerMoveItem(day.id)}
             className={`relative z-1 flex min-h-11 w-full cursor-pointer items-center gap-2 rounded-full bg-transparent px-2 text-left text-sm md:px-3 ${
               highlighted ? "font-medium text-on-accent" : "font-normal text-muted-fg"
             }`}

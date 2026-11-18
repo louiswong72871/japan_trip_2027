@@ -3,11 +3,11 @@ import { TextLink } from "./TextLink";
 
 export function SourceList({ links }: { links: RefLink[] }) {
   return (
-    <section className="mt-8" aria-labelledby="sources-heading">
+    <section className="mt-6" aria-labelledby="sources-heading">
       <h3 id="sources-heading" className="font-serif text-lg font-semibold text-fg">
         參考來源
       </h3>
-      <ol className="mt-3 list-decimal space-y-2 pl-5 text-sm">
+      <ol className="mt-2 list-decimal space-y-1.5 pl-5 text-base">
         {links.map((link) => (
           <li key={link.href + link.title} className="ps-1">
             <TextLink href={link.href}>{link.title}</TextLink>

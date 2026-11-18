@@ -29,13 +29,13 @@ export function ConfirmableStatus({
       <div className="flex flex-wrap items-center gap-2">
         <StatusBadge tone={confirmed ? "confirmed" : "pending"}>{badge}</StatusBadge>
         {item.optional ? <StatusBadge tone="info">備選</StatusBadge> : null}
-        <span className="text-sm font-medium text-fg">{item.label}</span>
+        <span className="text-base font-medium text-fg">{item.label}</span>
       </div>
       {item.canvasNote ? (
-        <p className="mt-1 text-sm text-muted-fg">{item.canvasNote}</p>
+        <p className="mt-1 text-base text-muted-fg">{item.canvasNote}</p>
       ) : null}
       {note ? (
-        <p className="mt-1 text-sm text-fg">
+        <p className="mt-1 text-base text-fg">
           <span className="text-muted-fg">確認備註：</span>
           {note}
         </p>
@@ -77,7 +77,7 @@ export function ConfirmableStatus({
             placeholder="例如：已在官網下訂，或電郵已對過"
             aria-label={`${item.label}的確認備註`}
             maxLength={200}
-            className="min-h-11 min-w-0 flex-1 rounded-[var(--radius-sm)] border border-border bg-card px-3 text-sm text-fg"
+            className="min-h-11 min-w-0 flex-1 rounded-[var(--radius-sm)] border border-border bg-card px-3 text-base text-fg"
           />
           <Button variant="secondary" onClick={saveNote}>
             儲存備註
@@ -95,7 +95,7 @@ export function DayStatusList({ ids }: { ids: string[] }) {
   return (
     <div className="divide-y divide-border border-y border-border">
       {ids.map((id) => (
-        <div key={id} className="py-4">
+        <div key={id} className="py-3">
           <ConfirmableStatus id={id} />
         </div>
       ))}
