@@ -2,7 +2,6 @@ import { DayStatusList } from "../components/ConfirmableStatus";
 import { Alternatives } from "../components/Alternatives";
 import { DataTable } from "../components/DataTable";
 import { DayPanel } from "../components/DayPanel";
-import { Properties } from "../components/Properties";
 import { SourceList } from "../components/SourceList";
 import { TextLink } from "../components/TextLink";
 import { Timeline } from "../components/Timeline";
@@ -14,86 +13,49 @@ const day = days[2];
 export function FoxDay() {
   return (
     <DayPanel day={day}>
-      <Properties
+      <DayStatusList ids={["fox-transport"]} />
+      <Timeline
         items={[
           {
-            label: "宮城藏王キツネ村",
-            value: "1月12日（週二）日間必去，15:00 前離場，不排晚上",
+            title: "酒店 5F 出發",
+            description: "09:10–09:15（估算）",
+            detail:
+              "走仙台站西口（官方徒步 3 分），入站轉 3 樓新幹線改札、4 樓 14 番線。發車前 20–25 分到月台。",
           },
           {
-            label: "官網",
-            value: <TextLink href={refs.foxHome.href}>宮城藏王キツネ村</TextLink>,
+            title: "やまびこ 132號",
+            description: "09:41–09:55",
+            detail:
+              "仙台 14番線開，白石藏王 2番線到。不要乘不停白石藏王的はやぶさ／こまち。自由席第三方報價片道 1,690 日圓；指定席用えきねっと再查。現行表，出發前再對 2027年1月。",
           },
           {
-            label: "冬季時間",
-            value:
-              "2026-10-15 起冬季營業：9:00-16:00，最終入場 15:30。暴風雪可縮短；雨天照常營業。",
+            title: "循環巴士第 1 便",
+            description: "10:15–10:49",
+            detail:
+              "タケヤ循環線，白石藏王站前上車，10:49 到狐狸村。大人 1,000 日圓。在站前等車。滿員改乘 13:05。1/12 平日不能用山麓アクセス線。",
           },
           {
-            label: "費用與預約",
-            value:
-              "成人（中學生以上）1,500 日圓，現場現金；官方寫不做前售票。個人不須預約；2026年2月起不受理個人安排的團體預約。",
+            title: "狐狸村（日間必去）",
+            description: "10:49–15:00",
+            detail: (
+              <>
+                <TextLink href={refs.foxHome.href}>宮城藏王キツネ村</TextLink>
+                。日間必去，15:00 前離場，不排晚上。2026-10-15 起冬季營業：9:00–16:00，最終入場 15:30。暴風雪可縮短；雨天照常營業。成人（中學生以上）1,500 日圓，現場現金；官方寫不做前售票。個人不須預約；2026年2月起不受理個人安排的團體預約。15:00 必須離場趕末班。自備午餐。
+              </>
+            ),
+          },
+          {
+            title: "末班循環巴士",
+            description: "15:00–15:36",
+            detail: "由村開出，15:36 到白石藏王。",
+          },
+          {
+            title: "やまびこ 143號（較穩）",
+            description: "16:51–17:05",
+            detail: "白石藏王 1番線開，仙台 14番線到。走西口回酒店，約 17:20 到。",
           },
         ]}
       />
-      <section>
-        <h3 className="mb-3 font-serif text-lg font-semibold">狀態</h3>
-        <DayStatusList ids={["fox-transport"]} />
-      </section>
-      <section>
-        <h3 className="mb-3 font-serif text-lg font-semibold">要去哪：日間時間線</h3>
-        <Properties
-          items={[
-            {
-              label: "在用交通",
-              value:
-                "やまびこ（不停白石藏王的はやぶさ／こまち不要乘）＋タケヤ循環線。1/12 平日不能用山麓アクセス線。現行表，出發前再對 2027年1月。時間為日本時間（JST）。",
-            },
-            {
-              label: "費用（現行，須再對）",
-              value:
-                "新幹線自由席第三方報價片道 1,690 日圓；指定席用えきねっと再查。循環巴士大人 1,000 日圓。入場 1,500 日圓，現場現金。",
-            },
-          ]}
-        />
-        <div className="mt-4">
-          <Timeline
-            items={[
-              {
-                title: "酒店 5F 出發",
-                description: "09:10–09:15（估算）",
-                detail:
-                  "走仙台站西口（官方徒步 3 分），入站轉 3 樓新幹線改札、4 樓 14 番線。發車前 20–25 分到月台。",
-              },
-              {
-                title: "やまびこ 132號",
-                description: "09:41–09:55",
-                detail: "仙台 14番線開，白石藏王 2番線到。",
-              },
-              {
-                title: "循環巴士第 1 便",
-                description: "10:15–10:49",
-                detail: "白石藏王站前上車，10:49 到狐狸村。在站前等車。滿員改乘 13:05。",
-              },
-              {
-                title: "狐狸村（日間必去）",
-                description: "10:49–15:00",
-                detail: "在園內活動。15:00 必須離場趕末班。自備午餐。",
-              },
-              {
-                title: "末班循環巴士",
-                description: "15:00–15:36",
-                detail: "由村開出，15:36 到白石藏王。",
-              },
-              {
-                title: "やまびこ 143號（較穩）",
-                description: "16:51–17:05",
-                detail: "白石藏王 1番線開，仙台 14番線到。走西口回酒店，約 17:20 到。",
-              },
-            ]}
-          />
-        </div>
-      </section>
       <Alternatives label="若改班或改跟團">
         <DataTable
           columns={["情況", "改做"]}

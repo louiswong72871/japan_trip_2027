@@ -42,7 +42,7 @@ export function ConfirmableStatus({
       ) : null}
       <div className="mt-2 flex flex-wrap gap-2">
         {confirmed ? (
-          <Button variant="ghost" onClick={() => revert(id)}>
+          <Button variant="secondary" onClick={() => revert(id)}>
             改回待確認
           </Button>
         ) : (
@@ -51,7 +51,7 @@ export function ConfirmableStatus({
           </Button>
         )}
         <Button
-          variant="ghost"
+          variant="secondary"
           aria-expanded={editing}
           aria-controls={noteId}
           onClick={() => {
@@ -93,9 +93,11 @@ export function ConfirmableStatus({
 
 export function DayStatusList({ ids }: { ids: string[] }) {
   return (
-    <div className="space-y-4 rounded-[var(--radius)] border border-border bg-card px-4 py-4 sm:px-6 sm:py-6">
+    <div className="divide-y divide-border border-y border-border">
       {ids.map((id) => (
-        <ConfirmableStatus key={id} id={id} />
+        <div key={id} className="py-4">
+          <ConfirmableStatus id={id} />
+        </div>
       ))}
     </div>
   );

@@ -3,75 +3,74 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 :root {
-  /* 樹冰夜燈 / Juhyo Lantern — 淺色・雪原.
-     Lantern (accent) is only the timeline spine and nodes, the selected day-tab
-     underline, and primary/accent button fills. Links use accent-text. */
-  --bg: #f3f5f7;
-  --fg: #1a1f24;
+  /* Editorial white / black / yellow — CalorieMate-inspired, not a brand clone.
+     Accent #FAC014 is a state colour (selected underline, timeline spine,
+     primary/accent fills, hero frame). Links use accent-text, never yellow body text. */
+  --bg: #ffffff;
+  --fg: #000000;
   --card: #ffffff;
-  --card-fg: #1a1f24;
-  --muted: #e6ebef;
-  --muted-fg: #4a5560;
-  --border: #c7cfd6;
-  --primary: #1f3a44;
-  --on-primary: #f7f4ee;
-  --secondary: #e6ebef;
-  --on-secondary: #1a1f24;
-  --accent: #c4843a;
-  --on-accent: #1a140c;
-  --accent-text: #7a4e16;
-  --destructive: #b42318;
+  --card-fg: #000000;
+  --muted: #f9f9f9;
+  --muted-fg: #4a4a4a;
+  --border: #e4e4e4;
+  --primary: #fac014;
+  --on-primary: #000000;
+  --secondary: #f9f9f9;
+  --on-secondary: #000000;
+  --accent: #fac014;
+  --on-accent: #000000;
+  --accent-text: #6b4e00;
+  --destructive: #c41e3a;
   --on-destructive: #ffffff;
-  --ring: #1a1f24;
-  --warning-bg: #f4f1ec;
-  --warning-fg: #5c4638;
-  --warning-border: #c4b09a;
+  --ring: #000000;
+  --warning-bg: #fff8e1;
+  --warning-fg: #4a3b00;
+  --warning-border: #e4e4e4;
   --success-bg: #e8f1ec;
   --success-fg: #215246;
   --success-border: #8aa89a;
-  --shadow: 0 8px 24px rgba(26, 31, 36, 0.12);
+  --shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
   --hero-overlay: linear-gradient(
     to top,
-    rgba(19, 23, 27, 0.78),
-    rgba(19, 23, 27, 0.28) 46%,
+    rgba(0, 0, 0, 0.72),
+    rgba(0, 0, 0, 0.28) 46%,
     transparent
   );
-  --radius: 12px;
-  --radius-sm: 8px;
+  --radius: 0.75rem;
+  --radius-sm: 0.5rem;
   --container-pad: 1.5rem;
   color-scheme: light;
 }
 
 [data-theme="dark"] {
-  /* 深色・夜山 */
-  --bg: #13171b;
-  --fg: #eef1f4;
-  --card: #1c2329;
-  --card-fg: #eef1f4;
-  --muted: #252e35;
-  --muted-fg: #a7b2bb;
-  --border: #3d4a54;
-  --primary: #3d5c56;
-  --on-primary: #f7f4ee;
-  --secondary: #252e35;
-  --on-secondary: #eef1f4;
-  --accent: #d4a054;
-  --on-accent: #16110c;
-  --accent-text: #e8b86d;
+  --bg: #0a0a0a;
+  --fg: #ffffff;
+  --card: #161616;
+  --card-fg: #ffffff;
+  --muted: #141414;
+  --muted-fg: #b3b3b3;
+  --border: #2e2e2e;
+  --primary: #fac014;
+  --on-primary: #000000;
+  --secondary: #1a1a1a;
+  --on-secondary: #ffffff;
+  --accent: #fac014;
+  --on-accent: #000000;
+  --accent-text: #fac014;
   --destructive: #e08a8a;
-  --on-destructive: #16110c;
-  --ring: #eef1f4;
-  --warning-bg: #3a342c;
-  --warning-fg: #e8dccf;
-  --warning-border: #6a5c4c;
-  --success-bg: #24332e;
+  --on-destructive: #0a0a0a;
+  --ring: #ffffff;
+  --warning-bg: #2a2414;
+  --warning-fg: #f5e6b8;
+  --warning-border: #4a4030;
+  --success-bg: #1a2a22;
   --success-fg: #c5ddd4;
   --success-border: #4d6b62;
-  --shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  --shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
   --hero-overlay: linear-gradient(
     to top,
-    rgba(19, 23, 27, 0.82),
-    rgba(19, 23, 27, 0.34) 46%,
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.36) 46%,
     transparent
   );
   color-scheme: dark;
@@ -105,6 +104,10 @@
   --color-success-border: var(--success-border);
   --radius-xl: var(--radius);
   --radius-lg: var(--radius-sm);
+}
+
+html {
+  overflow-x: clip;
 }
 
 html,
@@ -165,9 +168,9 @@ main {
 
 .callout {
   border: 1px solid var(--border);
-  border-left: 3px solid var(--warning-fg);
+  border-left: 3px solid var(--fg);
   border-radius: var(--radius);
-  background: var(--card);
+  background: transparent;
   color: var(--fg);
 }
 
@@ -176,11 +179,11 @@ dialog {
 }
 
 dialog::backdrop {
-  background: rgba(26, 31, 36, 0.4);
+  background: rgba(0, 0, 0, 0.4);
   opacity: var(--dialog-fade, 1);
 }
 
 [data-theme="dark"] dialog::backdrop {
-  background: rgba(0, 0, 0, 0.62);
+  background: rgba(0, 0, 0, 0.66);
   opacity: var(--dialog-fade, 1);
 }

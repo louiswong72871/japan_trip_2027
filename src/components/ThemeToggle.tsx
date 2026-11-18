@@ -8,7 +8,7 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggle}
-      className="inline-flex size-11 cursor-pointer items-center justify-center rounded-[var(--radius-sm)] border border-border bg-card text-fg transition-colors duration-200 active:border-fg"
+      className="inline-flex size-11 cursor-pointer items-center justify-center rounded-[var(--radius-sm)] border border-border bg-card text-fg active:border-fg"
       aria-label={`切換至${next}模式`}
     >
       {theme === "dark" ? <IconSun /> : <IconMoon />}

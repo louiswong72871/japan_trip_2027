@@ -2,7 +2,6 @@ import { DayStatusList } from "../components/ConfirmableStatus";
 import { Alternatives } from "../components/Alternatives";
 import { DataTable } from "../components/DataTable";
 import { DayPanel } from "../components/DayPanel";
-import { Properties } from "../components/Properties";
 import { SourceList } from "../components/SourceList";
 import { Timeline } from "../components/Timeline";
 import { days } from "../data/pages";
@@ -13,89 +12,57 @@ const day = days[1];
 export function GinzanDay() {
   return (
     <DayPanel day={day}>
-      <Properties
+      <DayStatusList ids={["kkday-183402", "bus-1-11"]} />
+      <Timeline
         items={[
           {
-            label: "主方案",
-            value: "KKday 183402 銀山溫泉夜景半日遊。山形站東口出發，不是仙台出發的藏王樹冰團。",
+            title: "酒店出發",
+            description: "12:45（估算）",
+            detail:
+              "走西口至仙台站前 22番（青葉通り旧エデン）；不是東口 76 番。官方西口徒步 3 分，另留買票排隊時間。現行土日祝表（2026年4月1日改正）。1/11 是成人の日。",
           },
           {
-            label: "集合",
-            value:
-              "JR山形站東口；15:20 集合、15:30 開出。行程表另列 15:10。15:00 前到，以憑證為準。旅遊巴在 SPAL 前，海獅車在予約タクシーのりば。",
+            title: "高速巴士往山形",
+            description: "13:10–14:17",
+            detail: "22番上車。片道 1,100 日圓。到站後轉東口，15:00 前到集合點。",
+          },
+          {
+            title: "東口集合，開出跟團",
+            description: "15:20 集合，15:30 開出",
+            detail:
+              "KKday 183402 銀山溫泉夜景半日遊。JR山形站東口出發，不是仙台出發的藏王樹冰團。旅遊巴在 SPAL 前，海獅車在予約タクシーのりば。行程表另列 15:10。以憑證為準。提前 10 分到，逾時不候。",
+          },
+          {
+            title: "大正浪漫館轉接駁",
+            description: "16:50",
+            detail: "若當日須轉乘。接駁費團不含。",
+          },
+          {
+            title: "銀山溫泉街",
+            description: "約 16:50–18:20",
+            detail: "停留約 90 分。不適合作正餐；午餐留在仙台，晚餐優先山形站附近。",
+          },
+          {
+            title: "返回接駁，山形站解散",
+            description: "18:20 回程，20:00 解散",
+            detail: "解散後轉站前 1 番。",
+          },
+          {
+            title: "高速巴士回仙台（較穩）",
+            description: "20:33–21:41",
+            detail: "山形站前 1 番上車。不要趕 20:13。走西口回酒店，約 21:55 到。",
           },
         ]}
       />
-      <section>
-        <h3 className="mb-3 font-serif text-lg font-semibold">狀態</h3>
-        <DayStatusList ids={["kkday-183402", "bus-1-11"]} />
-      </section>
-      <section>
-        <h3 className="mb-3 font-serif text-lg font-semibold">要去哪：KKday 時間線</h3>
-        <Properties
-          items={[
-            {
-              label: "在用交通",
-              value:
-                "仙台站前 22番（青葉通り旧エデン）高速巴士，現行土日祝表（2026年4月1日改正）。1/11 是成人の日。片道 1,100 日圓。酒店在西口，不是東口 76 番。現行表，出發前再對 2027年1月。時間為日本時間（JST）。",
-            },
-          ]}
-        />
-        <div className="mt-4">
-          <Timeline
-            items={[
-              {
-                title: "酒店出發",
-                description: "12:45（估算）",
-                detail:
-                  "走西口至仙台站前 22番（青葉通り旧エデン）。官方西口徒步 3 分，另留買票排隊時間。",
-              },
-              {
-                title: "高速巴士往山形",
-                description: "13:10–14:17",
-                detail: "22番上車。到站後轉東口，15:00 前到集合點。",
-              },
-              {
-                title: "東口集合，開出跟團",
-                description: "15:20 集合，15:30 開出",
-                detail:
-                  "旅遊巴在 SPAL 前，海獅車在予約タクシーのりば。以憑證為準。提前 10 分到，逾時不候。",
-              },
-              {
-                title: "大正浪漫館轉接駁",
-                description: "16:50",
-                detail: "若當日須轉乘。接駁費團不含。",
-              },
-              {
-                title: "銀山溫泉街",
-                description: "約 16:50–18:20",
-                detail: "停留約 90 分。不適合作正餐；午餐留在仙台，晚餐優先山形站附近。",
-              },
-              {
-                title: "返回接駁，山形站解散",
-                description: "18:20 回程，20:00 解散",
-                detail: "解散後轉站前 1 番。",
-              },
-              {
-                title: "高速巴士回仙台（較穩）",
-                description: "20:33–21:41",
-                detail: "山形站前 1 番上車。不要趕 20:13。走西口回酒店，約 21:55 到。",
-              },
-            ]}
-          />
-        </div>
-        <div className="mt-4">
-          <DataTable
-            columns={["項目", "內容"]}
-            rows={[
-              ["包含", "車資、導遊、停車、過路、保險"],
-              ["不包", "餐食、小費、個人消費、銀山接駁巴士"],
-              ["成團", "頁內最少 6／8／10 人說法不一致；未達人數出發前 4 天電郵取消"],
-              ["天候", "出發前 1 天當地 17:00 決定是否取消"],
-            ]}
-          />
-        </div>
-      </section>
+      <DataTable
+        columns={["項目", "內容"]}
+        rows={[
+          ["包含", "車資、導遊、停車、過路、保險"],
+          ["不包", "餐食、小費、個人消費、銀山接駁巴士"],
+          ["成團", "頁內最少 6／8／10 人說法不一致；未達人數出發前 4 天電郵取消"],
+          ["天候", "出發前 1 天當地 17:00 決定是否取消"],
+        ]}
+      />
       <Alternatives label="若改自行前往">
         <Timeline
           items={[

@@ -76,7 +76,7 @@ export function DayTabs({
             id={`tab-${day.id}`}
             tabIndex={selected ? 0 : -1}
             onClick={() => onChange(day.id)}
-            className={`inline-flex min-h-11 shrink-0 cursor-pointer items-center gap-2 border-b-2 bg-transparent px-4 text-sm whitespace-nowrap transition-colors duration-200 ${
+            className={`inline-flex min-h-11 shrink-0 cursor-pointer items-center gap-2 border-b-2 bg-transparent px-4 text-sm whitespace-nowrap ${
               selected
                 ? "border-accent font-medium text-fg"
                 : "border-transparent font-normal text-muted-fg"

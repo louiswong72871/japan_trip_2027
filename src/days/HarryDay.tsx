@@ -2,7 +2,6 @@ import { DayStatusList } from "../components/ConfirmableStatus";
 import { Alternatives } from "../components/Alternatives";
 import { DataTable } from "../components/DataTable";
 import { DayPanel } from "../components/DayPanel";
-import { Properties } from "../components/Properties";
 import { SourceList } from "../components/SourceList";
 import { TextLink } from "../components/TextLink";
 import { Timeline } from "../components/Timeline";
@@ -14,72 +13,41 @@ const day = days[6];
 export function HarryDay() {
   return (
     <DayPanel day={day}>
-      <Properties
-        items={[
-          {
-            label: "必去",
-            value:
-              "Warner Bros. Studio Tour Tokyo — The Making of Harry Potter（練馬／豊島園）。日間必去，不排晚上，不放在 1/15。",
-          },
-          {
-            label: "主方案",
-            value:
-              "官方 Standard（一般）票，上午 09:00–11:00 入場帶。大人現行 6,600–7,300 日圓，依入場日浮動。參觀約 3–4 小時。可提前 1 小時入館（第一輪為 30 分前）。票不可退，改期手續費官方 1,500 日圓。",
-          },
-          {
-            label: "購票",
-            value: (
-              <>
-                <TextLink href={refs.studioTickets.href}>官方購票</TextLink>
-                {" "}已開放至 2027-03-31 入場；日曆可選不等於有位。1/15–18 不在已公布休館日之列，開閉館時刻出發前再對官方日曆。
-              </>
-            ),
-          },
-          {
-            label: "在用交通",
-            value:
-              "由板橋大山駅南口出發，步行約 3 分（房源標示）。東武東上線至池袋（約 6 分），轉西武池袋線（經練馬）至豊島園。駅探現行一例 07:00–07:25，轉乘計入約 25 分，IC 370 円，轉乘 1 次（2026-10-24 表）；再步行約 2 分。門到門約 35–45 分（估算，出發前再對）。西武段不在 Tokyo Subway Ticket 內。",
-          },
-          {
-            label: "傍晚建議",
-            value: (
-              <>
-                <TextLink href={refs.skyTickets.href}>SHIBUYA SKY</TextLink>
-                {" 日落／晚間時段。須日時指定券；1/16 票於 2027-01-02 00:00（日本時間）開賣，前一日可免費取消。WEB 大人現行 15:00–21:20 為 3,400 日圓，10:00–14:59 為 2,700；窗口各貴 300。購買時再對官網。"}
-              </>
-            ),
-          },
-        ]}
-      />
-      <section>
-        <h3 className="mb-3 font-serif text-lg font-semibold">狀態</h3>
-        <DayStatusList ids={["harry", "sky", "tokyo-airbnb"]} />
-      </section>
+      <DayStatusList ids={["harry", "sky", "tokyo-airbnb"]} />
       <Timeline
         items={[
           {
             title: "由大山住宿出發",
             description: "約 08:00–08:15（估算）",
             detail:
-              "趕 09:00–11:00 入場帶。南口步行約 3 分，東武東上線至池袋再轉西武至豊島園。不要帶大型或多件行李入館；大箱先留在住宿。戶外 locker 開口約 350×930×555mm，大行李箱不一定放得進。",
+              "趕 09:00–11:00 入場帶。南口步行約 3 分（房源標示）。東武東上線至池袋（約 6 分），轉西武池袋線（經練馬）至豊島園。駅探現行一例 07:00–07:25，轉乘計入約 25 分，IC 370 円，轉乘 1 次（2026-10-24 表）。門到門約 35–45 分（估算，出發前再對）。西武段不在 Tokyo Subway Ticket 內。不要帶大型或多件行李入館；大箱先留在住宿。戶外 locker 開口約 350×930×555mm，大行李箱不一定放得進。",
             link: { href: refs.mapsOyamaStudio.href, label: "Google 地圖：大山駅至影城" },
           },
           {
             title: "豊島園駅步行至影城",
             description: "約 2 分",
-            detail: "場地為 Warner Bros. Studio Tour Tokyo（練馬／豊島園）。",
+            detail: "Warner Bros. Studio Tour Tokyo（練馬／豊島園）。",
             link: { href: refs.mapsIkebukuroStudio.href, label: "Google 地圖：池袋駅至影城" },
           },
           {
             title: "入場參觀（日間必去）",
             description: "09:00–11:00 入場帶",
-            detail: "留足 3–4 小時。可早到。結束後轉往渋谷看 SKY。",
+            detail: (
+              <>
+                日間必去，不排晚上，不放在 1/15。官方 Standard（一般）票。大人現行 6,600–7,300 日圓，依入場日浮動。留足 3–4 小時。可提前 1 小時入館（第一輪為 30 分前）。票不可退，改期手續費官方 1,500 日圓。已開放至 2027-03-31 入場；日曆可選不等於有位。1/15–18 不在已公布休館日之列，開閉館時刻出發前再對官方日曆。{" "}
+                <TextLink href={refs.studioTickets.href}>官方購票</TextLink>
+              </>
+            ),
           },
           {
             title: "SHIBUYA SKY（日落／晚間）",
             description: "建議 15:00 後時段",
-            detail:
-              "須日時指定。1/16 票於 2027-01-02 00:00（日本時間）開賣；前一日可免費取消。WEB 完售則窗口也不能買該時段。強風或關屋頂。不要與 teamLab 同日硬疊。",
+            detail: (
+              <>
+                須日時指定券。1/16 票於 2027-01-02 00:00（JST）開賣；前一日可免費取消。WEB 大人現行 15:00–21:20 為 3,400 日圓，10:00–14:59 為 2,700；窗口各貴 300。購買時再對官網。WEB 完售則窗口也不能買該時段。強風或關屋頂。不要與 teamLab 同日硬疊。{" "}
+                <TextLink href={refs.skyTickets.href}>官方購票</TextLink>
+              </>
+            ),
             link: { href: refs.mapsStudioSky.href, label: "Google 地圖：影城至 SHIBUYA SKY" },
           },
         ]}
@@ -104,7 +72,7 @@ export function HarryDay() {
               "才考慮 1/18 最早入場；約正午結束，回住宿取行李，約 15:50–16:00 由大山出發趕成田。不當首選。",
             ],
             ["不要改去 1/15", "抵達日有行李，locker 不一定放下大箱，不當主線。Magical Winter 已於 1/11 結束。"],
-            ["1/16 傍晚 SKY 完售或關屋頂", "改 1/17 同一展望台；票於 2027-01-03 00:00（日本時間）開賣"],
+            ["1/16 傍晚 SKY 完售或關屋頂", "改 1/17 同一展望台；票於 2027-01-03 00:00（JST）開賣"],
             ["teamLab 改去 1/17", "若 1/15 沒去，1/17 可改去 teamLab，不要與 SKY 同日硬疊。購票見 1/15。"],
             ["1/17 主線", "見 1/17 川越分頁。哈利波特、SKY、teamLab 仍為該日備選"],
           ]}

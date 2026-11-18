@@ -5,6 +5,7 @@ import { DayPager } from "./components/DayPager";
 import { DayTabs } from "./components/DayTabs";
 import { GearDialog } from "./components/GearDialog";
 import { Hero } from "./components/Hero";
+import { IntroWipe } from "./components/IntroWipe";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { TodoDialog } from "./components/TodoDialog";
 import { DEFAULT_DAY, days, isDayId, type DayId } from "./data/pages";
@@ -47,6 +48,7 @@ function AppShell() {
   const { todos, draft, setDraft, addTodo, toggleTodo } = useTodos();
   const DayView = dayViews[page];
   const shouldScroll = useRef(false);
+  const shellRef = useRef<HTMLDivElement>(null);
 
   const openPage = useCallback((id: DayId) => {
     shouldScroll.current = true;
@@ -79,9 +81,14 @@ function AppShell() {
   }, []);
 
   const current = days.find((day) => day.id === page) ?? days[0];
+  const dayIndex = days.findIndex((day) => day.id === page);
+  const chapterAlt = dayIndex % 2 === 1;
+
 
   return (
-    <div className="min-h-dvh bg-bg text-fg">
+    <>
+      <IntroWipe targetRef={shellRef} />
+      <div ref={shellRef} className="min-h-dvh bg-bg text-fg">
       <a
         href="#daily-tabs"
         className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-[var(--radius-sm)] focus:border focus:border-border focus:bg-card focus:px-3 focus:py-2 focus:text-fg"
@@ -108,19 +115,21 @@ function AppShell() {
           <ThemeToggle />
         </span>
       </div>
-      <div data-day-nav className="sticky top-0 z-20 mt-4 bg-bg">
+      <div data-day-nav className="sticky top-0 z-20 mt-4 border-b border-border bg-bg">
         <div className="mx-auto max-w-3xl px-4 sm:px-8">
           <DayTabs value={page} onChange={openPage} />
         </div>
       </div>
-      <main className="mx-auto max-w-3xl px-6 py-8 sm:px-8">
-        <p className="sr-only">{current.label}</p>
-        <DayView />
-        <DayPager page={page} onChange={openPage} />
-        <p className="mt-10 text-xs text-muted-fg">
-          此為行程計劃的視覺預覽，尚未公開部署。尚未下訂或待確認的項目會標示狀態，可在本機註記，不會代為購票或改訂。規劃原稿仍以畫布頁為準。
-        </p>
-      </main>
+      <section className={chapterAlt ? "bg-muted" : "bg-bg"}>
+        <main className="mx-auto max-w-3xl px-6 py-10 sm:px-8 sm:py-12">
+          <p className="sr-only">{current.label}</p>
+          <DayView />
+          <DayPager page={page} onChange={openPage} />
+          <p className="mt-10 text-xs text-muted-fg">
+            此為行程計劃的視覺預覽，尚未公開部署。尚未下訂或待確認的項目會標示狀態，可在本機註記，不會代為購票或改訂。規劃原稿仍以畫布頁為準。
+          </p>
+        </main>
+      </section>
       <TodoDialog
         open={todoOpen}
         items={todos}
@@ -132,7 +141,8 @@ function AppShell() {
       />
       <GearDialog open={gearOpen} onClose={() => setGearOpen(false)} />
       <BackToTop />
-    </div>
+      </div>
+    </>
   );
 }
 

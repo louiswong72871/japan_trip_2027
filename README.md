@@ -33,4 +33,4 @@ npm run preview
 
 ## 技術
 
-Vite、React、TypeScript、Tailwind CSS。視覺依 `ui-ux-pro-max` 的 design system（極簡／瑞士風格，Noto Serif TC／Noto Sans TC，淺藍與橘色）。之後可靜態匯出，交由你部署到 Cloudflare Pages 或 Vercel。
+Vite、React、TypeScript、Tailwind CSS、GSAP（`gsap` + `@gsap/react`）。視覺是編輯風白／黑／黃（參考大塚 CalorieMate 官網的版面節奏，不是品牌複製）：主底 `#FFFFFF`、正文 `#000000`、強調 `#FAC014`，標題 Noto Serif TC、正文 Noto Sans TC。細節見 `design-system/2027/MASTER.md`。之後可靜態匯出，交由你部署到 Cloudflare Pages 或 Vercel。

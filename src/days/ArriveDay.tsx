@@ -2,7 +2,6 @@ import { DayStatusList } from "../components/ConfirmableStatus";
 import { Alternatives } from "../components/Alternatives";
 import { DataTable } from "../components/DataTable";
 import { DayPanel } from "../components/DayPanel";
-import { Properties } from "../components/Properties";
 import { SourceList } from "../components/SourceList";
 import { TextLink } from "../components/TextLink";
 import { Timeline } from "../components/Timeline";
@@ -14,19 +13,7 @@ const day = days[0];
 export function ArriveDay() {
   return (
     <DayPanel day={day}>
-      <Properties
-        items={[
-          {
-            label: "在用交通",
-            value:
-              "香港快運 UO890，08:55（香港時間）香港國際機場 T2 至 14:00（日本時間）仙台機場；出關後乘仙台空港アクセス線至仙台站，再走西口至リッチモンドホテルプレミア仙台駅前（官方徒步約 3 分，前台 5F）。現行表，出發前再對。",
-          },
-        ]}
-      />
-      <section>
-        <h3 className="mb-3 font-serif text-lg font-semibold">狀態</h3>
-        <DayStatusList ids={["flights", "sendai-hotel"]} />
-      </section>
+      <DayStatusList ids={["flights", "sendai-hotel"]} />
       <Timeline
         items={[
           {
@@ -36,7 +23,7 @@ export function ArriveDay() {
           },
           {
             title: "抵仙台機場",
-            description: "14:00（日本時間）",
+            description: "14:00（JST）",
             detail: "出關及領行李約 30–60 分（估算），視當日而定。跟指示往仙台空港駅。",
           },
           {
@@ -49,13 +36,13 @@ export function ArriveDay() {
           {
             title: "西口步行至酒店入住",
             description: "到站後約 5–10 分（估算）",
-            detail: "出仙台站西口，官方徒步約 3 分，前台在 5F。14:00 起可入住。",
+            detail:
+              "出仙台站西口至リッチモンドホテルプレミア仙台駅前。官方徒步約 3 分，前台在 5F。14:00 起可入住。若尚未有 IC，可在仙台駅買 Welcome Suica（購卡起 28 日）。",
             link: { href: refs.mapsWalk.href, label: "Google 地圖：西口步行至酒店" },
           },
           {
             title: "西口圈晚餐，不排遠行程",
             description: "傍晚",
-            detail: "當天輕鬆熟路，為 1/11 銀山留體力。",
           },
         ]}
       />

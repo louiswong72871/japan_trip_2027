@@ -17,6 +17,7 @@ export function Timeline({ items }: { items: TimelineEntry[] }) {
         return (
           <li
             key={`${item.title}-${item.description}`}
+            data-timeline-node
             className="flex items-stretch gap-4"
           >
             <div className="relative flex w-3 shrink-0 justify-center">
