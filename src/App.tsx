@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { BackToTop } from "./components/BackToTop";
 import { Button } from "./components/Button";
 import { DayPager } from "./components/DayPager";
@@ -20,30 +20,56 @@ function readHash(): DayId {
   return isDayId(id) ? id : DEFAULT_DAY;
 }
 
+function tabBarDocumentTop(bar: HTMLElement): number {
+  const previous = bar.style.position;
+  bar.style.position = "static";
+  const top = bar.getBoundingClientRect().top + window.scrollY;
+  bar.style.position = previous;
+  return top;
+}
+
+function scrollTabBarToTop() {
+  const bar = document.querySelector<HTMLElement>("[data-day-nav]");
+  if (!bar) {
+    return;
+  }
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({
+    top: tabBarDocumentTop(bar),
+    behavior: reduce ? "auto" : "smooth",
+  });
+}
+
 function AppShell() {
   const [page, setPage] = useState<DayId>(readHash);
   const [todoOpen, setTodoOpen] = useState(false);
   const [gearOpen, setGearOpen] = useState(false);
   const { todos, draft, setDraft, addTodo, toggleTodo } = useTodos();
   const DayView = dayViews[page];
+  const shouldScroll = useRef(false);
 
   const openPage = useCallback((id: DayId) => {
+    shouldScroll.current = true;
     setPage(id);
     const hash = `#${id}`;
     if (window.location.hash !== hash) {
       window.history.pushState({ day: id }, "", hash);
     }
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const tabs = document.getElementById("daily-tabs");
-    if (tabs) {
-      tabs.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-    } else {
-      window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
-    }
   }, []);
 
+  useLayoutEffect(() => {
+    if (!shouldScroll.current) {
+      return;
+    }
+    shouldScroll.current = false;
+    scrollTabBarToTop();
+  }, [page]);
+
   useEffect(() => {
-    const onHash = () => setPage(readHash());
+    const onHash = () => {
+      shouldScroll.current = true;
+      setPage(readHash());
+    };
     window.addEventListener("hashchange", onHash);
     window.addEventListener("popstate", onHash);
     return () => {
@@ -82,7 +108,7 @@ function AppShell() {
           <ThemeToggle />
         </span>
       </div>
-      <div className="sticky top-0 z-20 mt-4 bg-bg">
+      <div data-day-nav className="sticky top-0 z-20 mt-4 bg-bg">
         <div className="mx-auto max-w-3xl px-4 sm:px-8">
           <DayTabs value={page} onChange={openPage} />
         </div>

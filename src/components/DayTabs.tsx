@@ -12,12 +12,19 @@ export function DayTabs({
   const listRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const selected = listRef.current?.querySelector<HTMLElement>(
-      '[aria-selected="true"]',
-    );
-    selected?.scrollIntoView({
-      inline: "center",
-      block: "nearest",
+    const list = listRef.current;
+    const selected = list?.querySelector<HTMLElement>('[aria-selected="true"]');
+    if (!list || !selected) {
+      return;
+    }
+    const listRect = list.getBoundingClientRect();
+    const selectedRect = selected.getBoundingClientRect();
+    const left =
+      list.scrollLeft +
+      (selectedRect.left - listRect.left) -
+      (listRect.width - selectedRect.width) / 2;
+    list.scrollTo({
+      left: Math.max(0, left),
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
         ? "auto"
         : "smooth",

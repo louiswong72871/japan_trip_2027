@@ -144,6 +144,11 @@ body {
   }
 }
 
+[data-day-nav],
+main {
+  overflow-anchor: none;
+}
+
 .tab-scroller {
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
