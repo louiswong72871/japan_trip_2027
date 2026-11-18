@@ -77,7 +77,7 @@ export function ConfirmableStatus({
             placeholder="例如：已在官網下訂，或電郵已對過"
             aria-label={`${item.label}的確認備註`}
             maxLength={200}
-            className="min-h-11 min-w-0 flex-1 rounded-[var(--radius-sm)] border-0 bg-bg px-3 text-sm text-fg"
+            className="min-h-11 min-w-0 flex-1 rounded-[var(--radius-sm)] border border-border bg-card px-3 text-sm text-fg"
           />
           <Button variant="secondary" onClick={saveNote}>
             儲存備註
@@ -93,7 +93,7 @@ export function ConfirmableStatus({
 
 export function DayStatusList({ ids }: { ids: string[] }) {
   return (
-    <div className="space-y-4 rounded-[var(--radius)] bg-card px-5 py-5 sm:px-6">
+    <div className="space-y-4 rounded-[var(--radius)] border border-border bg-card px-4 py-4 sm:px-6 sm:py-6">
       {ids.map((id) => (
         <ConfirmableStatus key={id} id={id} />
       ))}

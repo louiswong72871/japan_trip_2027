@@ -58,23 +58,31 @@ function AppShell() {
     <div className="min-h-dvh bg-bg text-fg">
       <a
         href="#daily-tabs"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-lg focus:bg-card focus:px-3 focus:py-2"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-[var(--radius-sm)] focus:border focus:border-border focus:bg-card focus:px-3 focus:py-2 focus:text-fg"
       >
         跳至每日行程
       </a>
       <Hero />
       <div className="mx-auto flex max-w-3xl flex-wrap items-center gap-2 px-6 pt-6 sm:px-8">
-        <Button variant="primary" onClick={() => setTodoOpen(true)}>
+        <Button
+          variant="primary"
+          aria-pressed={todoOpen}
+          onClick={() => setTodoOpen(true)}
+        >
           待辦
         </Button>
-        <Button variant="secondary" onClick={() => setGearOpen(true)}>
+        <Button
+          variant="secondary"
+          aria-pressed={gearOpen}
+          onClick={() => setGearOpen(true)}
+        >
           衣著與備案
         </Button>
         <span className="ms-auto">
           <ThemeToggle />
         </span>
       </div>
-      <div className="sticky top-0 z-20 mt-4 bg-bg/95 backdrop-blur-sm">
+      <div className="sticky top-0 z-20 mt-4 bg-bg">
         <div className="mx-auto max-w-3xl px-4 sm:px-8">
           <DayTabs value={page} onChange={openPage} />
         </div>

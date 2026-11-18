@@ -32,12 +32,12 @@ export function TodoDialog({
       <ul className="flex max-h-[50vh] flex-col gap-1 overflow-auto">
         {items.map((item) => (
           <li key={item.id}>
-            <label className="flex cursor-pointer items-start gap-3 rounded-lg px-2 py-2 hover:bg-muted">
+            <label className="flex cursor-pointer items-start gap-3 rounded-[var(--radius-sm)] px-2 py-2">
               <input
                 type="checkbox"
                 checked={item.done}
                 onChange={() => onToggle(item.id)}
-                className="mt-1 size-4 shrink-0 cursor-pointer accent-primary"
+                className="mt-1 size-4 shrink-0 cursor-pointer accent-fg"
               />
               <span className={`text-sm ${item.done ? "text-muted-fg line-through" : "text-fg"}`}>
                 {item.text}
@@ -54,7 +54,7 @@ export function TodoDialog({
           onKeyDown={onKeyDown}
           placeholder="新增待辦"
           aria-label="新增待辦"
-          className="min-h-11 min-w-0 flex-1 rounded-[var(--radius-sm)] border-0 bg-muted px-3 text-sm text-fg"
+          className="min-h-11 min-w-0 flex-1 rounded-[var(--radius-sm)] border border-border bg-card px-3 text-sm text-fg"
         />
         <Button variant="primary" onClick={onAdd}>
           新增

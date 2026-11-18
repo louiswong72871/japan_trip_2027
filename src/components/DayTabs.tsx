@@ -54,7 +54,7 @@ export function DayTabs({
       role="tablist"
       aria-label="每日行程"
       onKeyDown={onKeyDown}
-      className="tab-scroller flex flex-nowrap gap-1 overflow-x-auto overflow-y-hidden bg-bg py-2"
+      className="tab-scroller flex flex-nowrap gap-2 overflow-x-auto overflow-y-hidden bg-bg py-2"
     >
       {days.map((day) => {
         const selected = value === day.id;
@@ -69,10 +69,10 @@ export function DayTabs({
             id={`tab-${day.id}`}
             tabIndex={selected ? 0 : -1}
             onClick={() => onChange(day.id)}
-            className={`inline-flex min-h-11 shrink-0 cursor-pointer items-center gap-2 whitespace-nowrap rounded-[var(--radius-sm)] px-4 text-sm transition-colors duration-200 ${
+            className={`inline-flex min-h-11 shrink-0 cursor-pointer items-center gap-2 border-b-2 bg-transparent px-4 text-sm whitespace-nowrap transition-colors duration-200 ${
               selected
-                ? "bg-muted font-medium text-fg"
-                : "bg-transparent font-normal text-muted-fg hover:bg-muted/70 hover:text-fg"
+                ? "border-accent font-medium text-fg"
+                : "border-transparent font-normal text-muted-fg"
             }`}
           >
             <Icon />

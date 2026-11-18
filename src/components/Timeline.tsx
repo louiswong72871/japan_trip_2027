@@ -13,24 +13,27 @@ export function Timeline({ items }: { items: TimelineEntry[] }) {
     <ol className="max-w-xl">
       {items.map((item, index) => {
         const last = index === items.length - 1;
+        const active = index === 0;
         return (
           <li
             key={`${item.title}-${item.description}`}
             className="flex items-stretch gap-4"
           >
-            <div className="relative flex w-6 shrink-0 flex-col items-center">
-              {last ? null : (
+            <div className="relative flex w-3 shrink-0 justify-center">
+              {items.length > 1 ? (
                 <span
-                  className="absolute top-6 bottom-0 left-1/2 w-0.5 -translate-x-1/2 bg-secondary"
+                  className={`absolute left-1/2 w-0.5 -translate-x-1/2 bg-accent ${
+                    index === 0 ? "top-3 bottom-0" : last ? "top-0 h-3" : "inset-y-0"
+                  }`}
                   aria-hidden="true"
                 />
-              )}
+              ) : null}
               <span
-                className="relative z-1 flex size-6 shrink-0 items-center justify-center rounded-full bg-muted"
+                className={`relative z-1 mt-1.5 size-3 shrink-0 rounded-full border-2 border-accent ${
+                  active ? "bg-accent" : "bg-card"
+                }`}
                 aria-hidden="true"
-              >
-                <span className="size-2 rounded-full bg-primary" />
-              </span>
+              />
             </div>
             <div className={`min-w-0 ${last ? "pb-0" : "pb-6"}`}>
               <h3 className="text-base font-medium text-fg">{item.title}</h3>
