@@ -3,65 +3,77 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 :root {
-  /* Direct wabi-sabi preview: white + very light blue, no decorative border color.
-     ui-ux-pro-max had no "wabi sabi" / "zen japanese" row; this follows Nature Distilled
-     (organic radius 16–24px, soft shadow, quiet handmade feel) and Japanese Elegant typography,
-     adapted to Traditional Chinese (Noto Serif/Sans TC) and the requested palette. */
-  --bg: #ffffff;
-  --fg: #2a2f33;
+  /* 樹冰夜燈 / Juhyo Lantern — 淺色・雪原.
+     Lantern (accent) is only the timeline spine and nodes, the selected day-tab
+     underline, and primary/accent button fills. Links use accent-text. */
+  --bg: #f3f5f7;
+  --fg: #1a1f24;
   --card: #ffffff;
-  --card-fg: #2a2f33;
-  --muted: #f3f7fa;
-  --muted-fg: #4f5b64;
-  --border: transparent;
-  --primary: #4a6672;
-  --on-primary: #ffffff;
-  --secondary: #e8f1f6;
-  --on-secondary: #2a2f33;
-  --accent: #4a6672;
-  --on-accent: #ffffff;
-  --destructive: #a43d3d;
+  --card-fg: #1a1f24;
+  --muted: #e6ebef;
+  --muted-fg: #4a5560;
+  --border: #c7cfd6;
+  --primary: #1f3a44;
+  --on-primary: #f7f4ee;
+  --secondary: #e6ebef;
+  --on-secondary: #1a1f24;
+  --accent: #c4843a;
+  --on-accent: #1a140c;
+  --accent-text: #7a4e16;
+  --destructive: #b42318;
   --on-destructive: #ffffff;
-  --ring: #2a2f33;
+  --ring: #1a1f24;
   --warning-bg: #f4f1ec;
   --warning-fg: #5c4638;
-  --warning-border: transparent;
-  --success-bg: #eef4f1;
+  --warning-border: #c4b09a;
+  --success-bg: #e8f1ec;
   --success-fg: #215246;
-  --success-border: transparent;
-  --shadow: 0 8px 32px rgba(42, 47, 51, 0.06);
-  --hero-overlay: linear-gradient(to top, rgba(42, 47, 51, 0.42), rgba(42, 47, 51, 0.08) 55%, transparent);
-  --radius: 1.25rem;
-  --radius-sm: 0.75rem;
+  --success-border: #8aa89a;
+  --shadow: 0 8px 24px rgba(26, 31, 36, 0.12);
+  --hero-overlay: linear-gradient(
+    to top,
+    rgba(19, 23, 27, 0.78),
+    rgba(19, 23, 27, 0.28) 46%,
+    transparent
+  );
+  --radius: 12px;
+  --radius-sm: 8px;
   --container-pad: 1.5rem;
   color-scheme: light;
 }
 
 [data-theme="dark"] {
-  --bg: #1c2124;
-  --fg: #e8eef1;
-  --card: #23292c;
-  --card-fg: #e8eef1;
-  --muted: #2a3338;
-  --muted-fg: #c5ced3;
-  --border: transparent;
-  --primary: #8fa8b3;
-  --on-primary: #1c2124;
-  --secondary: #2f3a40;
-  --on-secondary: #e8eef1;
-  --accent: #8fa8b3;
-  --on-accent: #1c2124;
+  /* 深色・夜山 */
+  --bg: #13171b;
+  --fg: #eef1f4;
+  --card: #1c2329;
+  --card-fg: #eef1f4;
+  --muted: #252e35;
+  --muted-fg: #a7b2bb;
+  --border: #3d4a54;
+  --primary: #3d5c56;
+  --on-primary: #f7f4ee;
+  --secondary: #252e35;
+  --on-secondary: #eef1f4;
+  --accent: #d4a054;
+  --on-accent: #16110c;
+  --accent-text: #e8b86d;
   --destructive: #e08a8a;
-  --on-destructive: #1c2124;
-  --ring: #e8eef1;
+  --on-destructive: #16110c;
+  --ring: #eef1f4;
   --warning-bg: #3a342c;
   --warning-fg: #e8dccf;
-  --warning-border: transparent;
-  --shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --warning-border: #6a5c4c;
   --success-bg: #24332e;
   --success-fg: #c5ddd4;
-  --success-border: transparent;
-  --hero-overlay: linear-gradient(to top, rgba(28, 33, 36, 0.7), rgba(28, 33, 36, 0.18) 55%, transparent);
+  --success-border: #4d6b62;
+  --shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  --hero-overlay: linear-gradient(
+    to top,
+    rgba(19, 23, 27, 0.82),
+    rgba(19, 23, 27, 0.34) 46%,
+    transparent
+  );
   color-scheme: dark;
 }
 
@@ -81,6 +93,7 @@
   --color-on-secondary: var(--on-secondary);
   --color-accent: var(--accent);
   --color-on-accent: var(--on-accent);
+  --color-accent-text: var(--accent-text);
   --color-destructive: var(--destructive);
   --color-on-destructive: var(--on-destructive);
   --color-ring: var(--ring);
@@ -116,6 +129,10 @@ body {
   outline-offset: 3px;
 }
 
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -128,18 +145,12 @@ body {
 }
 
 .tab-scroller {
-  scrollbar-width: thin;
-  scrollbar-color: var(--muted-fg) transparent;
+  scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
 
 .tab-scroller::-webkit-scrollbar {
-  height: 6px;
-}
-
-.tab-scroller::-webkit-scrollbar-thumb {
-  background: var(--secondary);
-  border-radius: 99px;
+  display: none;
 }
 
 .table-scroller {
@@ -147,10 +158,18 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+.callout {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--warning-fg);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--fg);
+}
+
 dialog::backdrop {
-  background: rgba(42, 47, 51, 0.32);
+  background: rgba(26, 31, 36, 0.4);
 }
 
 [data-theme="dark"] dialog::backdrop {
-  background: rgba(0, 0, 0, 0.56);
+  background: rgba(0, 0, 0, 0.62);
 }

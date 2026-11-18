@@ -13,7 +13,7 @@ export function DayPanel({
       role="tabpanel"
       id={`panel-${day.id}`}
       aria-labelledby={`tab-${day.id}`}
-      className="outline-none rounded-[var(--radius)] bg-muted/50 px-5 py-6 sm:px-6 sm:py-7"
+      className="rounded-[var(--radius)] border border-border bg-card px-4 py-6 sm:px-6"
     >
       <h2 className="font-serif text-xl font-semibold text-balance text-fg sm:text-2xl">
         {day.heading}

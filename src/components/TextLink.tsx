@@ -10,7 +10,7 @@ export function TextLink({ href, children, className = "", ...props }: Props) {
   return (
     <a
       href={href}
-      className={`cursor-pointer text-primary underline decoration-primary/30 underline-offset-4 transition-colors duration-200 hover:decoration-primary ${className}`}
+      className={`cursor-pointer text-accent-text underline decoration-accent-text/30 underline-offset-4 ${className}`}
       {...(external
         ? { target: "_blank", rel: "noopener noreferrer" }
         : {})}

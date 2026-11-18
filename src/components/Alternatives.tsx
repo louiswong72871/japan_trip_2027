@@ -18,12 +18,16 @@ export function Alternatives({
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((value) => !value)}
+        className="aria-expanded:border-fg aria-expanded:bg-muted"
       >
         {open ? "收起備選" : label}
       </Button>
       {open ? (
-        <div id={panelId} className="mt-3 space-y-4">
-          {children}
+        <div
+          id={panelId}
+          className="mt-4 rounded-[var(--radius)] border border-border bg-card p-4 sm:p-6"
+        >
+          <div className="space-y-4">{children}</div>
         </div>
       ) : null}
     </div>

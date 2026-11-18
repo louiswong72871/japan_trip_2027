@@ -4,13 +4,13 @@ type Variant = "primary" | "secondary" | "ghost" | "accent";
 
 const styles: Record<Variant, string> = {
   primary:
-    "bg-primary text-on-primary hover:brightness-95",
+    "border border-accent bg-accent text-on-accent active:border-fg aria-pressed:border-fg",
   secondary:
-    "bg-muted text-fg hover:bg-secondary",
+    "border border-border bg-card text-fg active:border-fg active:bg-muted aria-pressed:border-fg aria-pressed:bg-muted",
   ghost:
-    "bg-transparent text-fg hover:bg-muted",
+    "border border-transparent bg-transparent text-fg active:border-border active:bg-muted aria-pressed:border-border aria-pressed:bg-muted",
   accent:
-    "bg-primary text-on-primary hover:brightness-95",
+    "border border-accent bg-accent text-on-accent active:border-fg aria-pressed:border-fg",
 };
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {

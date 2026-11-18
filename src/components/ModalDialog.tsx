@@ -54,7 +54,7 @@ export function ModalDialog({
     <dialog
       ref={dialogRef}
       aria-labelledby={titleId}
-      className={`fixed inset-0 m-auto max-h-[85vh] ${widthClass} overflow-hidden rounded-[var(--radius)] border-0 bg-card p-0 text-card-fg shadow-[var(--shadow)]`}
+      className={`fixed inset-0 z-50 m-auto h-fit max-h-[85vh] ${widthClass} overflow-hidden rounded-[var(--radius)] border border-border bg-card p-0 text-card-fg shadow-[var(--shadow)]`}
       onClick={(event) => {
         if (event.target === event.currentTarget) {
           onClose();
