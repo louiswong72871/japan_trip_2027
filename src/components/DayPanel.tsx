@@ -99,24 +99,8 @@ export function DayPanel({
       id={`panel-${day.id}`}
       aria-labelledby={`tab-${day.id}`}
     >
-      <header className="flex flex-wrap items-start gap-x-6 gap-y-4">
-        <h2 data-day-heading className="min-w-0 text-fg">
-          <span className="sr-only">{day.heading}</span>
-          <span aria-hidden="true" className="block">
-            <span className="block font-sans text-sm font-medium tracking-[0.18em] text-muted-fg">
-              DAY {meta.number}
-            </span>
-            <span className="mt-1.5 flex flex-wrap items-end gap-x-3 gap-y-2">
-              <span className="font-serif text-5xl leading-none font-semibold tracking-[0.04em] sm:text-6xl">
-                {meta.latinDate}
-              </span>
-              <span className="mb-1 inline-flex min-h-8 items-center rounded-full border border-fg px-3 text-sm font-medium tracking-[0.12em]">
-                {meta.name}
-              </span>
-            </span>
-          </span>
-        </h2>
-        <figure className="min-w-[11rem] w-full max-w-lg flex-1 basis-56">
+      <header className="relative">
+        <figure className="relative overflow-hidden">
           <picture>
             <source srcSet={photo.srcSet} type="image/webp" />
             <img
@@ -124,24 +108,66 @@ export function DayPanel({
               alt={photo.alt}
               width={960}
               height={640}
-              loading="lazy"
+              loading="eager"
+              fetchPriority="high"
               decoding="async"
-              className="aspect-[3/2] w-full rounded-[var(--radius)] object-cover"
+              className="h-[min(22rem,52vw)] w-full object-cover sm:h-[min(26rem,38vw)]"
+              style={
+                photo.objectPosition
+                  ? { objectPosition: photo.objectPosition }
+                  : undefined
+              }
             />
           </picture>
-          <figcaption className="mt-1.5 text-xs text-muted-fg">
+          <div
+            className="pointer-events-none absolute inset-0 bg-black/25"
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 h-3/4 bg-gradient-to-b from-black/80 via-black/45 to-transparent"
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/55 to-transparent"
+            aria-hidden="true"
+          />
+          <div className="absolute inset-x-0 top-0 z-10">
+            <h2
+              data-day-heading
+              className="mx-auto max-w-5xl px-5 pt-6 text-white sm:px-8 sm:pt-8"
+              style={{
+                textShadow: "0 1px 2px rgba(0,0,0,0.8), 0 2px 16px rgba(0,0,0,0.45)",
+              }}
+            >
+              <span className="sr-only">{day.heading}</span>
+              <span aria-hidden="true" className="block">
+                <span className="block font-sans text-sm font-medium tracking-[0.18em] text-white/90">
+                  DAY {meta.number}
+                </span>
+                <span className="mt-1.5 flex flex-wrap items-end gap-x-3 gap-y-2">
+                  <span className="font-serif text-5xl leading-none font-semibold tracking-[0.04em] sm:text-6xl">
+                    {meta.latinDate}
+                  </span>
+                  <span className="mb-1 inline-flex min-h-8 items-center rounded-full bg-accent px-3 text-sm font-medium tracking-[0.12em] text-on-accent shadow-[0_1px_2px_rgba(0,0,0,0.35)]">
+                    {meta.name}
+                  </span>
+                </span>
+              </span>
+            </h2>
+          </div>
+          <figcaption className="absolute right-5 bottom-3 z-10 max-w-[min(100%-2.5rem,24rem)] text-right text-xs text-white/90 sm:right-8">
             <a
               href={photo.href}
               target="_blank"
               rel="noreferrer"
-              className="underline decoration-border underline-offset-2"
+              className="underline decoration-white/55 underline-offset-2"
             >
               照片：{photo.credit} · {photo.license}
             </a>
           </figcaption>
         </figure>
       </header>
-      <div className="mt-6 space-y-5">
+      <div className="mx-auto max-w-5xl space-y-5 px-5 pt-6 sm:px-8 sm:pt-8">
         <DayTodos dayId={day.id} />
         {children}
       </div>

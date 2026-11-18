@@ -1,4 +1,4 @@
-import { gearGapsSummary, gearItems } from "../data/gear";
+import { gearFieldNotes, gearGapsSummary, gearItems } from "../data/gear";
 import { GapStatusList } from "./ConfirmableStatus";
 import { ModalDialog } from "./ModalDialog";
 
@@ -9,6 +9,9 @@ export function GearDialog({
   open: boolean;
   onClose: () => void;
 }) {
+  const essential = gearItems[0];
+  const weather = gearItems[1];
+
   return (
     <ModalDialog
       open={open}
@@ -17,12 +20,33 @@ export function GearDialog({
       widthClass="w-[min(36rem,92vw)]"
     >
       <div className="flex flex-col gap-4">
-        {gearItems.map((item) => (
-          <section key={item.title}>
-            <h3 className="text-sm font-medium text-fg">{item.title}</h3>
-            <p className="mt-1 text-sm text-muted-fg">{item.detail}</p>
-          </section>
-        ))}
+        <section>
+          <h3 className="text-sm font-medium text-fg">{essential.title}</h3>
+          <p className="mt-1 text-sm text-muted-fg">{essential.detail}</p>
+        </section>
+        <section>
+          <h3 className="text-sm font-medium text-fg">藏王山頂穿著備註</h3>
+          <p className="mt-1 text-sm text-muted-fg">
+            二月實地經驗，供裝備參考，不是已核實的必備清單。
+          </p>
+          <div className="mt-3 flex flex-col gap-4">
+            {gearFieldNotes.map((note) => (
+              <div key={note.source}>
+                <p className="text-sm font-medium text-fg">{note.source}</p>
+                <ul className="mt-1 list-disc space-y-0.5 pl-5 text-sm text-muted-fg">
+                  {note.layers.map((layer) => (
+                    <li key={layer}>{layer}</li>
+                  ))}
+                </ul>
+                <p className="mt-1 text-sm text-muted-fg">{note.note}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+        <section>
+          <h3 className="text-sm font-medium text-fg">{weather.title}</h3>
+          <p className="mt-1 text-sm text-muted-fg">{weather.detail}</p>
+        </section>
         <section>
           <h3 className="text-sm font-medium text-fg">必要缺項</h3>
           <p className="mt-1 text-sm text-muted-fg">{gearGapsSummary}</p>

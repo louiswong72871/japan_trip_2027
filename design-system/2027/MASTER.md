@@ -67,7 +67,7 @@
 
 - 選中分頁：黃色膠囊滑塊跟隨目前或游標所在項目（約 0.4 秒，cubic-bezier(.2,.9,.3,1.1)，帶一點過衝）；文字切成 `on-accent`。離開選單時滑塊回到當日。
 - 時間軸：2px 同色脊線；首個／當日節點實心，其餘 12px 空心描邊
-- 頁面背景：三團既有主題色的柔和 radial 漸層光暈（約 12 秒交錯飄移）+ 細顆粒雜訊層。不要加回頂部照片主視覺橫幅。
+- 頁面背景：三團既有主題色的柔和 radial 漸層光暈（約 12 秒交錯飄移）+ 細顆粒雜訊層。各日頂部用該日照片做橫幅；不要另加全站共用的主視覺橫幅。
 
 不要把警示 callout 做成行銷黃框。
 
@@ -75,8 +75,7 @@
 
 ## Layout
 
-- 每日分頁在左側固定側欄（sticky DayTabs）。主欄約 `max-w-5xl`，時間軸用滿欄寬。不要加 Lenis／smooth-scroll，以免打斷 sticky 與切日捲回。不要加頂部主視覺橫幅。
-- 各日標題右側放一張 3:2 小圖（不是橫幅），圖下註明 Wikimedia 作者與授權，連到原檔。1/16 只用豊島園駅，不用哈利波特官方或角色圖片。
+- 每日分頁在左側固定側欄（sticky DayTabs）。主欄約 `max-w-5xl`，時間軸用滿欄寬。不要加 Lenis／smooth-scroll，以免打斷 sticky 與切日捲回。各日照片做主欄全寬橫幅，日期標題疊在圖上方；用深色漸層、字影與黃色名稱膠囊保證對比。圖下角註明 Wikimedia 作者與授權，連到原檔。1/16 只用豊島園駅，不用哈利波特官方或角色圖片。
 - 單日主體是垂直時間軸。不要加行銷描述或概述。警示、callout、必做事項必須保留。
 - 不要改行程事實或時刻。不要寫門禁、信箱號碼或住宿完整街址。
 
@@ -89,7 +88,7 @@
 - **首次造訪 intro**（`sessionStorage` 旗標 `sendai-2027-intro-seen`，回訪跳過）：約 1.5–2 秒。黃 `#FAC014` wipe + 主容器 `scale` 1.06→1，`power2`／`power3`。不要長時間鎖捲動。不要用隨機商品包裝或 5–6 秒劇場式 loader。
 - **切日／首次顯示當日**：時間軸節點 fade/slide，短 stagger，約 300ms，`power2.out`。
 - **保留**：dialog 開關、備選展開收合、切日時捲回版面頂、`:focus-visible`。
-- **不要**：ScrollTrigger pin、scroll-jack、Lenis。不要加回頂部 Hero 橫幅或視差。
+- **不要**：ScrollTrigger pin、scroll-jack、Lenis。不要加全站共用 Hero 或視差；各日橫幅不要做捲動視差。
 - **不要**在一般按鈕、連結、卡片上做 hover 變色、底、亮度、位移或黃色 hover wipe。例外：每日分頁的膠囊滑塊可在 pointerenter 時跟隨項目。減少動態時滑塊立即到位、背景光暈與顆粒不移動。
 - 選中／active／pressed／expanded／open／`aria-current` 仍可用黃作為狀態。
 

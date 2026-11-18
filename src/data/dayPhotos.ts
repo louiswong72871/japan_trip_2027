@@ -7,6 +7,7 @@ export type DayPhoto = {
   credit: string;
   license: string;
   href: string;
+  objectPosition?: string;
 };
 
 export const dayPhotos: Record<DayId, DayPhoto> = {
@@ -17,6 +18,7 @@ export const dayPhotos: Record<DayId, DayPhoto> = {
     credit: "Nryate",
     license: "CC BY-SA 4.0",
     href: "https://commons.wikimedia.org/wiki/File:Sendai_Station_West_Exit_2018.jpg",
+    objectPosition: "center 40%",
   },
   ginzan: {
     src: "/days/ginzan-onsen.jpg",
@@ -41,6 +43,7 @@ export const dayPhotos: Record<DayId, DayPhoto> = {
     credit: "Suz-b",
     license: "CC BY-SA 3.0",
     href: "https://commons.wikimedia.org/wiki/File:Mt.Zao(Mt.Jizo)_Juhyo.JPG",
+    objectPosition: "center 70%",
   },
   donto: {
     src: "/days/osaki-dontosai.jpg",
@@ -73,6 +76,7 @@ export const dayPhotos: Record<DayId, DayPhoto> = {
     credit: "Zairon",
     license: "CC BY-SA 4.0",
     href: "https://commons.wikimedia.org/wiki/File:Kawagoe_Toki_no_Kane_1.jpg",
+    objectPosition: "center 35%",
   },
   depart: {
     src: "/days/narita-terminal-2.jpg",
