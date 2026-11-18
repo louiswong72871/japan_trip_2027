@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  /* Direct wabi-sabi preview: white + very light blue, no decorative border color.
+     ui-ux-pro-max had no "wabi sabi" / "zen japanese" row; this follows Nature Distilled
+     (organic radius 16–24px, soft shadow, quiet handmade feel) and Japanese Elegant typography,
+     adapted to Traditional Chinese (Noto Serif/Sans TC) and the requested palette. */
+  --bg: #ffffff;
+  --fg: #2a2f33;
+  --card: #ffffff;
+  --card-fg: #2a2f33;
+  --muted: #f3f7fa;
+  --muted-fg: #4f5b64;
+  --border: transparent;
+  --primary: #4a6672;
+  --on-primary: #ffffff;
+  --secondary: #e8f1f6;
+  --on-secondary: #2a2f33;
+  --accent: #4a6672;
+  --on-accent: #ffffff;
+  --destructive: #a43d3d;
+  --on-destructive: #ffffff;
+  --ring: #2a2f33;
+  --warning-bg: #f4f1ec;
+  --warning-fg: #5c4638;
+  --warning-border: transparent;
+  --success-bg: #eef4f1;
+  --success-fg: #215246;
+  --success-border: transparent;
+  --shadow: 0 8px 32px rgba(42, 47, 51, 0.06);
+  --hero-overlay: linear-gradient(to top, rgba(42, 47, 51, 0.42), rgba(42, 47, 51, 0.08) 55%, transparent);
+  --radius: 1.25rem;
+  --radius-sm: 0.75rem;
+  --container-pad: 1.5rem;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #1c2124;
+  --fg: #e8eef1;
+  --card: #23292c;
+  --card-fg: #e8eef1;
+  --muted: #2a3338;
+  --muted-fg: #c5ced3;
+  --border: transparent;
+  --primary: #8fa8b3;
+  --on-primary: #1c2124;
+  --secondary: #2f3a40;
+  --on-secondary: #e8eef1;
+  --accent: #8fa8b3;
+  --on-accent: #1c2124;
+  --destructive: #e08a8a;
+  --on-destructive: #1c2124;
+  --ring: #e8eef1;
+  --warning-bg: #3a342c;
+  --warning-fg: #e8dccf;
+  --warning-border: transparent;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --success-bg: #24332e;
+  --success-fg: #c5ddd4;
+  --success-border: transparent;
+  --hero-overlay: linear-gradient(to top, rgba(28, 33, 36, 0.7), rgba(28, 33, 36, 0.18) 55%, transparent);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: "Noto Sans TC", "Noto Sans", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --font-serif: "Noto Serif TC", "Noto Serif", "Source Han Serif TC", serif;
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-card: var(--card);
+  --color-card-fg: var(--card-fg);
+  --color-muted: var(--muted);
+  --color-muted-fg: var(--muted-fg);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-secondary: var(--secondary);
+  --color-on-secondary: var(--on-secondary);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-destructive: var(--destructive);
+  --color-on-destructive: var(--on-destructive);
+  --color-ring: var(--ring);
+  --color-warning-bg: var(--warning-bg);
+  --color-warning-fg: var(--warning-fg);
+  --color-warning-border: var(--warning-border);
+  --color-success-bg: var(--success-bg);
+  --color-success-fg: var(--success-fg);
+  --color-success-border: var(--success-border);
+  --radius-xl: var(--radius);
+  --radius-lg: var(--radius-sm);
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.tab-scroller {
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted-fg) transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tab-scroller::-webkit-scrollbar {
+  height: 6px;
+}
+
+.tab-scroller::-webkit-scrollbar-thumb {
+  background: var(--secondary);
+  border-radius: 99px;
+}
+
+.table-scroller {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+dialog::backdrop {
+  background: rgba(42, 47, 51, 0.32);
+}
+
+[data-theme="dark"] dialog::backdrop {
+  background: rgba(0, 0, 0, 0.56);
+}
