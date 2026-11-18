@@ -1,5 +1,6 @@
-import type { ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 import type { DayPage } from "../data/pages";
+import { fadeSlideIn, motionDuration, useGSAP } from "../motion/gsap";
 
 export function DayPanel({
   day,
@@ -8,8 +9,17 @@ export function DayPanel({
   day: DayPage;
   children: ReactNode;
 }) {
+  const panelRef = useRef<HTMLElement>(null);
+
+  useGSAP(() => {
+    if (panelRef.current) {
+      fadeSlideIn(panelRef.current, motionDuration.panel);
+    }
+  }, { scope: panelRef });
+
   return (
     <article
+      ref={panelRef}
       role="tabpanel"
       id={`panel-${day.id}`}
       aria-labelledby={`tab-${day.id}`}

@@ -1,7 +1,21 @@
+import { useRef } from "react";
+import { fadeSlideIn, motionDuration, useGSAP } from "../motion/gsap";
+
 export function Hero() {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (cardRef.current) {
+      fadeSlideIn(cardRef.current, motionDuration.hero);
+    }
+  }, { scope: cardRef });
+
   return (
     <header className="bg-bg px-6 pt-6 sm:px-8 sm:pt-8">
-      <div className="relative mx-auto h-[200px] max-w-3xl overflow-hidden rounded-[var(--radius)] border border-border sm:h-[280px]">
+      <div
+        ref={cardRef}
+        className="relative mx-auto h-[200px] max-w-3xl overflow-hidden rounded-[var(--radius)] border border-border sm:h-[280px]"
+      >
         <picture>
           <source
             type="image/webp"
