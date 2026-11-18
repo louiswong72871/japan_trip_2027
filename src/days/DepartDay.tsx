@@ -9,6 +9,16 @@ import { refs } from "../data/refs";
 
 const day = days[8];
 
+function Points({ items }: { items: string[] }) {
+  return (
+    <ul className="list-disc space-y-1 ps-4">
+      {items.map((item) => (
+        <li key={item}>{item}</li>
+      ))}
+    </ul>
+  );
+}
+
 export function DepartDay() {
   return (
     <DayPanel day={day}>
@@ -16,23 +26,69 @@ export function DepartDay() {
       <Timeline
         items={[
           {
-            title: "由大山住宿出發",
-            description: "建議約 15:50–16:00",
-            detail:
-              "板橋大山駅南口 Airbnb，自助退房；頁面未顯示退房時刻，出發前再對 Airbnb（待確認）。趕現行平日 16:45 日暮里開出的 Skyliner（約 17:22 到 T2）。東武東上線至池袋，轉山手線外迴至日暮里。駅探現行一例 13:32–13:56，24 分，IC 370 円，轉乘 1 次（2026-11-15）；連步行與轉乘，門到門至日暮里約 35–45 分（估算，出發前再對）。",
+            title: "15:50–16:00",
+            description: "由大山住宿出發，自助退房",
+            detail: (
+              <Points
+                items={[
+                  "板橋大山駅南口 Airbnb",
+                  "頁面未顯示退房時刻，出發前再對 Airbnb（待確認）",
+                ]}
+              />
+            ),
+          },
+          {
+            title: "約 35–45 分",
+            description: "東武東上線至池袋，轉山手線外迴至日暮里",
+            detail: (
+              <Points
+                items={[
+                  "含步行與轉乘的門到門估算，出發前再對",
+                  "駅探現行一例 13:32–13:56，24 分，IC 370 円，轉乘 1 次（2026-11-15）",
+                ]}
+              />
+            ),
             link: { href: refs.mapsOyamaNippori.href, label: "Google 地圖：大山駅至日暮里駅" },
           },
           {
-            title: "Skyliner 至成田第2航廈",
-            description: "現行平日 16:45 開，約 17:22 到 T2",
-            detail:
-              "日暮里至空港第2ビル最快約 36 分（官方）。全車指定席，要先取位。官方頁曾列日暮里／上野→空港第2ビル 2,470 日圓（IC 2,465），經東京駅轉日暮里約 2,630 日圓；另一頁列標準 2,580、網上割引 2,310。以當日畫面為準。冬天建議 17:55 前到 T2。到 T2 後辦理登機。京成現行平日表，出發前再對。",
+            title: "16:45",
+            description: "日暮里開出 Skyliner",
+            detail: (
+              <Points
+                items={[
+                  "全車指定席，要先取位",
+                  "京成現行平日表，出發前再對",
+                ]}
+              />
+            ),
+          },
+          {
+            title: "約 17:22",
+            description: "到成田 T2",
+            detail: (
+              <Points
+                items={[
+                  "日暮里至空港第2ビル最快約 36 分（官方）",
+                  "官方頁曾列日暮里／上野→空港第2ビル 2,470 日圓（IC 2,465）",
+                  "經東京駅轉日暮里約 2,630 日圓",
+                  "另一頁列標準 2,580、網上割引 2,310",
+                  "冬天建議 17:55 前到 T2，其後辦理登機",
+                ]}
+              />
+            ),
             link: { href: refs.mapsOyamaNarita.href, label: "Google 地圖：大山駅至成田第2航廈" },
           },
           {
-            title: "香港快運 UO693",
-            description: "20:55（JST）起飛",
-            detail: "成田 T2 出發，1/19 01:20（香港時間）抵香港 T1。",
+            title: "20:55（JST）",
+            description: "香港快運 UO693 起飛",
+            detail: (
+              <Points
+                items={[
+                  "成田 T2 出發",
+                  "1/19 01:20（香港時間）抵香港 T1",
+                ]}
+              />
+            ),
           },
         ]}
       />

@@ -46,8 +46,6 @@
 
 **不要用** 舊主題色票：樹冰夜燈（冷色雪原）、圍爐暖冬（和紙／柿色）、或 ui-ux-pro-max 的奶油＋陶土／海軍藍／Aurora Glass。
 
-Hero overlay 用黑色漸層，確保白色標題 ≥4.5:1。
-
 ### Typography
 
 - **Heading Font:** Noto Serif TC（標題、日期大字、對話框標題）
@@ -66,16 +64,16 @@ Hero overlay 用黑色漸層，確保白色標題 ≥4.5:1。
 
 只這兩處用 2px 黃色作為固定簽名，不是 hover：
 
-- 選中分頁：2px `--accent` 底線
+- 選中分頁：2px `--accent` 左邊線
 - 時間軸：2px 同色脊線；首個／當日節點實心，其餘 12px 空心描邊
 
-Hero 可用黃色畫框突出主視覺，少用。不要把警示 callout 做成行銷黃框。
+不要把警示 callout 做成行銷黃框。不要再加頂部主視覺橫幅。
 
 ---
 
 ## Layout
 
-- 分頁必須留在頂部（sticky DayTabs）。不要加 Lenis／smooth-scroll，以免打斷 sticky 與切日捲回。
+- 每日分頁在左側固定側欄（sticky DayTabs）。不要加 Lenis／smooth-scroll，以免打斷 sticky 與切日捲回。不要加頂部主視覺橫幅。
 - 單日主體是垂直時間軸。不要加行銷描述或概述。警示、callout、必做事項必須保留。
 - 雙數日／單數日交替用白底與 `#F9F9F9`（深色則 `#0A0A0A`／`#141414`）作為章節底。DayPanel 不再套一層全日白底大卡。
 - 不要改行程事實、時刻，或 `src/data/*`（除必要 className）。不要寫門禁、信箱號碼或住宿完整街址。
@@ -88,15 +86,16 @@ Hero 可用黃色畫框突出主視覺，少用。不要把警示 callout 做成
 
 - **首次造訪 intro**（`sessionStorage` 旗標 `sendai-2027-intro-seen`，回訪跳過）：約 1.5–2 秒。黃 `#FAC014` wipe + 主容器 `scale` 1.06→1，`power2`／`power3`。不要長時間鎖捲動。不要用隨機商品包裝或 5–6 秒劇場式 loader。
 - **切日／首次顯示當日**：時間軸節點 fade/slide，短 stagger，約 300ms，`power2.out`。
-- **保留**：dialog 開關、備選展開收合、切日時 tab bar 捲到頂、`:focus-visible`。
-- **不要**：ScrollTrigger pin、scroll-jack、Lenis。Hero 視差若與 sticky tabs 衝突就跳過。
-- **不要 hover 變色、底、亮度、位移或黃色 hover wipe。** 選中／active／pressed／expanded／open／`aria-current` 才可用黃（pill 或 2px 底線）作為狀態。
+- **保留**：dialog 開關、備選展開收合、切日時捲回版面頂、`:focus-visible`。
+- **不要**：ScrollTrigger pin、scroll-jack、Lenis。不要加回頂部 Hero 橫幅或視差。
+- **不要 hover 變色、底、亮度、位移或黃色 hover wipe。** 選中／active／pressed／expanded／open／`aria-current` 才可用黃（pill 或 2px 左邊線）作為狀態。
 
 ---
 
 ## Components
 
-- 按鈕 `min-height: 44px`。待辦＝accent／primary（黃底黑字）。衣著與備案、改回待確認、確認備註＝secondary（平面＋1px 邊框）。
+- 按鈕 `min-height: 44px`。各日待辦的「新增」＝accent／primary（黃底黑字）。衣著與備案、改回待確認、確認備註＝secondary（平面＋1px 邊框）。
+- 待辦顯示在對應那一日，狀態為待確認／已完成；不要再用頂部全域待辦按鈕。衣著與備案在側欄開啟置中對話框。
 - Dialog 置中、focus trap、1px border、radius 12。
 - TextLink 用 `accent-text`，正常狀態已有底線。
 - 已核實徽章要有文字＋可見邊框。

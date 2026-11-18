@@ -1,6 +1,7 @@
 import { useRef, type ReactNode } from "react";
 import { days, type DayPage } from "../data/pages";
 import { gsap, useGSAP } from "../motion/gsap";
+import { DayTodos } from "./DayTodos";
 
 function chapterMeta(day: DayPage) {
   const index = days.findIndex((entry) => entry.id === day.id);
@@ -111,7 +112,10 @@ export function DayPanel({
           </span>
         </span>
       </h2>
-      <div className="mt-8 space-y-6">{children}</div>
+      <div className="mt-8 space-y-6">
+        <DayTodos dayId={day.id} />
+        {children}
+      </div>
     </article>
   );
 }
