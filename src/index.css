@@ -4,8 +4,8 @@
 
 :root {
   /* Editorial white / black / yellow — CalorieMate-inspired, not a brand clone.
-     Accent #FAC014 is a state colour (selected underline, timeline spine,
-     primary/accent fills, hero frame). Links use accent-text, never yellow body text. */
+     Accent #FAC014 is a state colour (selected capsule, timeline spine,
+     primary/accent fills). Links use accent-text, never yellow body text. */
   --bg: #ffffff;
   --fg: #000000;
   --card: #ffffff;
@@ -186,4 +186,119 @@ dialog::backdrop {
 [data-theme="dark"] dialog::backdrop {
   background: rgba(0, 0, 0, 0.66);
   opacity: var(--dialog-fade, 1);
+}
+
+
+.day-tab-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(0, 0);
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.1),
+    width 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.1),
+    height 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+}
+
+.day-tab-slider[data-ready="true"] {
+  opacity: 1;
+}
+
+.grain-gradient {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--bg);
+}
+
+.grain-gradient > * {
+  position: relative;
+  z-index: 1;
+}
+
+.grain-gradient::before,
+.grain-gradient::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.grain-gradient::before {
+  background:
+    radial-gradient(ellipse 80% 60% at 18% 22%, color-mix(in srgb, var(--accent) 34%, transparent), transparent 72%),
+    radial-gradient(ellipse 70% 55% at 86% 28%, color-mix(in srgb, var(--fg) 8%, transparent), transparent 68%),
+    radial-gradient(ellipse 75% 60% at 48% 92%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 72%);
+  background-repeat: no-repeat;
+  background-size: 140% 140%, 150% 150%, 160% 160%;
+  background-position: 0% 8%, 100% 20%, 46% 100%;
+  animation: grain-drift 12s ease-in-out infinite alternate;
+}
+
+.grain-gradient::after {
+  opacity: 0.11;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  animation: grain-flicker 0.28s steps(4) infinite;
+}
+
+[data-theme="dark"] .grain-gradient::before {
+  background:
+    radial-gradient(ellipse 80% 60% at 18% 22%, color-mix(in srgb, var(--accent) 28%, transparent), transparent 72%),
+    radial-gradient(ellipse 70% 55% at 86% 28%, color-mix(in srgb, var(--fg) 10%, transparent), transparent 68%),
+    radial-gradient(ellipse 75% 60% at 48% 92%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 72%);
+  background-repeat: no-repeat;
+  background-size: 140% 140%, 150% 150%, 160% 160%;
+  background-position: 0% 8%, 100% 20%, 46% 100%;
+}
+
+[data-theme="dark"] .grain-gradient::after {
+  opacity: 0.16;
+}
+
+@keyframes grain-drift {
+  0% {
+    background-position: 0% 8%, 100% 20%, 46% 100%;
+  }
+  50% {
+    background-position: 28% 42%, 72% 68%, 58% 74%;
+  }
+  100% {
+    background-position: 12% 78%, 84% 12%, 24% 32%;
+  }
+}
+
+@keyframes grain-flicker {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-1.5%, 1%);
+  }
+  50% {
+    transform: translate(1%, -2.5%);
+  }
+  75% {
+    transform: translate(-1%, 2%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .day-tab-slider {
+    transition: none;
+  }
+
+  .grain-gradient::before,
+  .grain-gradient::after {
+    animation: none;
+  }
 }

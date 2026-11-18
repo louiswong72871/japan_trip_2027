@@ -69,13 +69,11 @@ function AppShell() {
   }, []);
 
   const current = days.find((day) => day.id === page) ?? days[0];
-  const dayIndex = days.findIndex((day) => day.id === page);
-  const chapterAlt = dayIndex % 2 === 1;
 
   return (
     <>
       <IntroWipe targetRef={shellRef} />
-      <div ref={shellRef} className="min-h-dvh bg-bg text-fg">
+      <div ref={shellRef} className="grain-gradient min-h-dvh text-fg">
         <a
           href="#daily-tabs"
           className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-[var(--radius-sm)] focus:border focus:border-border focus:bg-card focus:px-3 focus:py-2 focus:text-fg"
@@ -85,7 +83,7 @@ function AppShell() {
         <div data-day-layout className="flex min-h-dvh">
           <aside
             data-day-nav
-            className="sticky top-0 z-20 flex h-dvh w-[4.75rem] shrink-0 flex-col border-r border-border bg-bg md:w-56"
+            className="sticky top-0 z-20 flex h-dvh w-[4.75rem] shrink-0 flex-col border-r border-border bg-transparent md:w-56"
           >
             <div className="hidden border-b border-border px-4 py-4 md:block">
               <p className="text-[0.65rem] font-medium tracking-[0.14em] text-muted-fg">
@@ -114,7 +112,7 @@ function AppShell() {
               </span>
             </div>
           </aside>
-          <section className={`min-w-0 flex-1 ${chapterAlt ? "bg-muted" : "bg-bg"}`}>
+          <section className="min-w-0 flex-1 bg-transparent">
             <main className="mx-auto max-w-3xl px-5 py-8 sm:px-8 sm:py-12">
               <p className="sr-only">{current.label}</p>
               <DayView />
