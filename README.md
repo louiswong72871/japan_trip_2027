@@ -2,7 +2,7 @@
 
 這是 [2027仙台冬旅計劃（可修訂）](https://cursor.com/canvas/store-a50ea603-be00-4c5b-ba93-5b8658cf7177/eb70cdd1-10d2-4553-804a-74eb3753166f) 的獨立網站版本，把整份行程做成可在手機與電腦瀏覽的視覺預覽。打開網站會直接進入 1/10。
 
-畫布頁仍是可修訂的規劃原稿；這個網站是對外／預覽用的介面，行程有改再同步一次。目前尚未部署到 Cloudflare Pages 或 Vercel，其他人還不能用公開網址打開這個版本。現有畫布公開連結仍可分享：<https://2027-7vwt.pages.grok.bot/>。
+畫布頁仍是可修訂的規劃原稿；這個網站是對外／預覽用的介面，行程有改再同步一次。公開網站在 Cloudflare Workers：<https://sendai-2027-trip-site.louis72871.workers.dev>。畫布公開連結仍可分享：<https://2027-7vwt.pages.grok.bot/>。
 
 ## 本機執行
 
@@ -33,4 +33,4 @@ npm run preview
 
 ## 技術
 
-Vite、React、TypeScript、Tailwind CSS、GSAP（`gsap` + `@gsap/react`）。視覺是編輯風白／黑／黃（參考大塚 CalorieMate 官網的版面節奏，不是品牌複製）：主底 `#FFFFFF`、正文 `#000000`、強調 `#FAC014`，標題 Noto Serif TC、正文 Noto Sans TC。細節見 `design-system/2027/MASTER.md`。之後可靜態匯出，交由你部署到 Cloudflare Pages 或 Vercel。
+Vite、React、TypeScript、Tailwind CSS、GSAP（`gsap` + `@gsap/react`）。視覺是編輯風白／黑／黃（參考大塚 CalorieMate 官網的版面節奏，不是品牌複製）：主底 `#FFFFFF`、正文 `#000000`、強調 `#FAC014`，標題 Noto Serif TC、正文 Noto Sans TC。細節見 `design-system/2027/MASTER.md`。靜態建置後以 Workers 靜態資源部署（見 `wrangler.jsonc`）。
