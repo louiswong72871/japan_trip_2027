@@ -62,18 +62,34 @@ export function KawagoeDay() {
               [
                 "鎌倉／江の島一日",
                 <>
-                  大山經池袋轉湘南新宿ライン，現行較快約 1 小時 26 分–1 小時 28 分，門到門約 1 小時 40 分–2 小時（估算）。第二天要趕成田晚班，不當主線。{" "}
+                  大山經池袋轉湘南新宿ライン，現行較快約 1 小時 26 分–1 小時 28 分，門到門約 1 小時 40 分–2 小時（估算）。{" "}
                   <TextLink href={refs.mapsOyamaKamakura.href}>大山駅至鎌倉駅</TextLink>
                 </>,
               ],
-              ["1/16 哈利波特改到今天", "走法見 1/16。不當 1/17 主線。"],
               [
-                "1/16 傍晚 SKY 改到今天",
-                "票於 2027-01-03 00:00（日本時間）開賣。購票見 1/16。不要與 teamLab 同日硬疊。",
+                "可改今天上午去哈利波特",
+                <>
+                  09:00–11:00 入場帶，官方 Standard 大人 6,600–7,300 日圓；大山門到門約 35–45 分。須官方預購。{" "}
+                  <TextLink href={refs.studioTickets.href}>官方購票</TextLink>
+                  {" · "}
+                  <TextLink href={refs.mapsOyamaStudio.href}>大山駅至影城</TextLink>
+                </>,
               ],
               [
-                "1/15 沒去 teamLab",
-                "改今天去，仍須官網預購。購票見 1/15。不要與 SKY 同日硬疊。",
+                "可改今天傍晚去 SHIBUYA SKY",
+                <>
+                  票於 2027-01-03 00:00（日本時間）開賣。建議 15:00 後時段，WEB 大人 3,400 日圓。{" "}
+                  <TextLink href={refs.skyTickets.href}>官方購票</TextLink>
+                </>,
+              ],
+              [
+                "可改今天去 teamLab",
+                <>
+                  仍須官網預購。大山門到門約 55–70 分（估算）。{" "}
+                  <TextLink href={refs.teamlabTickets.href}>官方購票</TextLink>
+                  {" · "}
+                  <TextLink href={refs.mapsOyamaTeamlab.href}>大山駅至 teamLab Planets</TextLink>
+                </>,
               ],
             ]}
           />

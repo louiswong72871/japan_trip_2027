@@ -84,7 +84,7 @@ export function ArriveDay() {
                 link: { href: refs.mapsWalk.href, label: "Google 地圖：西口步行至酒店" },
               },
               {
-                title: "西口圈晚餐，不排遠行程",
+                title: "西口圈晚餐",
                 description: "傍晚",
               },
             ]}
