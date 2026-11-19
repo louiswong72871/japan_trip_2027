@@ -4,13 +4,14 @@ import { TextLink } from "./TextLink";
 export type TimelineEntry = {
   title: string;
   description: string;
+  price?: string;
   detail?: ReactNode;
   link?: { href: string; label: string };
 };
 
 export function Timeline({ items }: { items: TimelineEntry[] }) {
   return (
-    <ol>
+    <ol className="m-0 list-none p-0">
       {items.map((item, index) => {
         const last = index === items.length - 1;
         const active = index === 0;
@@ -36,9 +37,14 @@ export function Timeline({ items }: { items: TimelineEntry[] }) {
                 aria-hidden="true"
               />
             </div>
-            <div className={`min-w-0 ${last ? "pb-0" : "pb-5"}`}>
-              <h3 className="font-serif text-xl leading-tight font-semibold text-fg">{item.title}</h3>
-              <p className="mt-1 text-base text-muted-fg">{item.description}</p>
+            <div className={`min-w-0 ${last ? "pb-0" : "pb-6"}`}>
+              <h3 className="font-serif text-xl leading-tight font-semibold text-fg">
+                {item.title}
+              </h3>
+              <p className="mt-1 text-base tabular-nums text-muted-fg">{item.description}</p>
+              {item.price ? (
+                <p className="mt-1 text-base font-semibold tabular-nums text-fg">{item.price}</p>
+              ) : null}
               {item.detail ? (
                 <div className="mt-2 text-base text-pretty text-fg">{item.detail}</div>
               ) : null}

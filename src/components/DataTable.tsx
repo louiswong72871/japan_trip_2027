@@ -11,12 +11,12 @@ export function DataTable({
     <div className="table-scroller overflow-hidden rounded-[var(--radius)] border border-border bg-card">
       <table className="w-full min-w-[20rem] border-collapse text-left text-base">
         <thead>
-          <tr className="border-b border-border">
+          <tr className="border-b border-border bg-muted">
             {columns.map((column) => (
               <th
                 key={column}
                 scope="col"
-                className="px-3 py-2.5 font-medium whitespace-nowrap text-fg"
+                className="px-3 py-2.5 font-semibold whitespace-nowrap text-fg"
               >
                 {column}
               </th>
@@ -27,7 +27,12 @@ export function DataTable({
           {rows.map((row, index) => (
             <tr key={index} className="border-b border-border last:border-b-0">
               {row.map((cell, cellIndex) => (
-                <td key={cellIndex} className="px-3 py-2.5 align-top text-pretty">
+                <td
+                  key={cellIndex}
+                  className={`px-3 py-3 align-top text-pretty ${
+                    cellIndex === 0 ? "font-medium text-fg" : "text-fg"
+                  }`}
+                >
                   {cell}
                 </td>
               ))}

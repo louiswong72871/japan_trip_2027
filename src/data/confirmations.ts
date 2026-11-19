@@ -64,7 +64,7 @@ export const confirmationItems: ConfirmationItem[] = [
     label: "1/13 樹冰交通",
     pendingKind: "unarranged",
     defaultStatus: "pending",
-    canvasNote: "具體班次尚未排定；仙台東口冬季直達巴士 2026-27 季尚未公布，不能當可訂",
+    canvasNote: "現行平日表，出發前再對 2027年1月；仙台東口冬季直達巴士 2026-27 季尚未公布，不能當可訂",
     appearsIn: ["juhyo"],
     inGaps: true,
   },
